@@ -1,0 +1,20 @@
+#footer {
+  @include center;
+  @include h(64px);
+  @include bgc($dark);
+
+  .copyright {
+    @extend %ui-tiny, %ui-white;
+
+    @include ta;
+    @include fw("regular");
+  }
+
+  @include min-md {
+    @include h(180px);
+
+    .copyright {
+      @include fs($fs-small);
+    }
+  }
+}

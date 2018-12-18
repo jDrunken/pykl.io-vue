@@ -1,0 +1,152 @@
+/** @group Typography
+ * 1. variables
+ * 2. functions
+ * 3. mixins
+ */
+
+/** 1. variables */
+
+/// @variable {string} - `font-family`
+$ff-en: "CircularStd", sans-serif;
+$ff-ko: "SpoqaHanSans", sans-serif;
+
+/// @variable {string} - `font-size`
+$fs-micro: 12px;
+$fs-tiny: 13px;
+$fs-small: 14px;
+$fs-base: 16px;
+$fs-medium: 18px;
+$fs-large: 20px;
+$fs-extra-large: 28px !default;
+
+/// @variable {string} = `line-height`
+$lh-ui: 1;
+$lh-micro: 1.333333333 !default;
+$lh-tiny: 1.538461538 !default;
+$lh-small: 1.428571429 !default;
+$lh-base: 1.25 !default;
+$lh-medium: 1 !default;
+$lh-large: 1.5 !default;
+$lh-extra-large: 1.384615385 !default;
+
+/// @variable {string} - `font-weight`
+$fw-light: 300;
+$fw-regular: 400;
+$fw-bold: 700;
+
+/// A map of `font-families`
+/// @prop {key} - Font language
+/// @prop {value} - Font family type
+$ff-map: ("en": $ff-en, "ko": $ff-ko);
+
+/// A map of `font-sizes`
+/// @prop {key} - Font size type
+/// @prop {value} - Font size value
+$fs-map: ("micro": $fs-micro, "tiny": $fs-tiny, "small": $fs-small, "base": $fs-base, "medium": $fs-medium, "large": $fs-large, "extra-large": $fs-extra-large);
+
+/// A map of `line-heights`
+/// @prop {key} - Line height type
+/// @prop {value} - Line height value
+$lh-map: ("ui": $lh-ui, "micro": $lh-micro, "tiny": $lh-tiny, "small": $lh-small, "base": $lh-base, "medium": $lh-medium, "large": $lh-large, "extra-large": $lh-extra-large);
+
+/// A map of `font-weights`
+/// @prop {key} - Font weight type
+/// @prop {value} - Font weight value
+$fw-map: ("light": $fw-light, "regular": $fw-regular, "bold": $fw-bold);
+
+/** 2. functions */
+
+/// Returns `font-family` value according to thtei language
+/// @param {String} $type - Font size type
+/// @return {Number} - Font size value (px)
+@function ff($lang) {
+  @return map-get($ff-map, $lang);
+}
+
+/// @function - Returns `font-size` value of given type
+/// @param {String} $type - Font size type
+/// @return {Number} - Font size value (px)
+@function fs($type) {
+  @return map-get($fs-map, $type);
+}
+
+/// @function - Returns `line-height` value of given type
+/// @param {String} $type - Line height type
+/// @return {Number} - Line height value
+@function lh($type) {
+  @return map-get($lh-map, $type);
+}
+
+/// @function - Returns `font-weight` value of given type
+/// @param {String} $type - Font weight type
+/// @return {Number} - Font weight value
+@function fw($type) {
+  @return map-get($fw-map, $type);
+}
+
+/// @list - A list of typography levels
+/// @props {key} - Name of color
+/// @props {value} - Color for the ui
+$typography-sizes: "micro", "tiny", "small", "base", "medium", "large", "extra-large";
+
+/// @atoms Creates placeholders
+
+@each $size in $typography-sizes {
+  %text-#{$size} {
+    @include fs(fs($size));
+    @include lh(lh($size));
+  }
+
+  %ui-#{$size} {
+    @include fs(fs($size));
+    @include lh(lh("ui"));
+  }
+}
+
+// /// @modules Create placeholders for typically used text styles
+// %section-title,
+// .section__title
+//   @extend %text-medium, %text-title
+
+// %process-title,
+// .process__title
+//   @extend %ui-small, %ui-dark
+//   +fw(700)
+
+// %hero-title,
+// .hero__title
+//   @extend %text-extra-large, %text-title
+
+// %card-title,
+// .card__title
+//   @extend %ui-base, %ui-dark
+//   +fw(fw('bold'))
+
+// %text-meta,
+// .text--meta
+//   @extend %text-small, %text-caption
+
+// /** @atom typography atoms
+
+// %type-small
+//   +fs($fs-small)
+//   +lh($lh-small)
+//   +fw(400)
+
+// %type-base
+//   +fs($fs-base)
+//   +lh($lh-base)
+
+// %type-medium
+//   +fs($fs-medium)
+//   +lh($lh-ui)
+
+// %type-large
+//   +fs($fs-large)
+//   +lh($lh-large)
+//   +fw(700)
+
+// %type-extra-large
+//   +fs($fs-extra-large)
+//   +lh($lh-extra-large)
+//   +fw(700)

@@ -1,0 +1,34 @@
+.contact {
+  &__text {
+    @extend %text-large, %text-title;
+
+    @include fw("bold");
+    @include ta;
+  }
+
+  &__etc {
+    @include center;
+    @include wrap;
+    @include mt(24px);
+
+    .button--large {
+      @include w;
+
+      &:first-child {
+        @include mb($base);
+      }
+    }
+
+    @include min-md {
+      @include mt(48px);
+
+      .button--large {
+        @include mb(0 !important);
+
+        &:first-child {
+          @include mr(20px);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.sr-only {
+  @include abs;
+  @include t;
+  @include r;
+  @include z(z("below"));
+  @include w(1px);
+  @include h(1px);
+  @include fs(1px);
+  @include lh(1);
+  @include m;
+  @include hidden;
+}
+
+.breakpoint-md {
+  @include block;
+  @include min-md {
+    @include inline;
+  }
+}
+
+.breakpoint-sm-lg {
+  @media screen and (min-width: $breakpoint-sm) and (max-width: $breakpoint-lg) {
+    @include block;
+  }
+}

@@ -1,0 +1,208 @@
+.hero {
+  @include flex(column);
+  @include jc(flex-end);
+  @include w;
+  @include h(100vh);
+
+  @media screen and (min-height: 800px) {
+    @include h(87vh);
+  }
+
+  &__pykl {
+    @include rel;
+    @include z(1);
+    @include w(85%);
+    @include max-w(468px);
+    @include bgs(contain);
+    @include bgr;
+  }
+
+  &__pykl {
+    @include block;
+    @include max-w(320px);
+    @include bgi("../../../assets/image/main-bottle@2x.png");
+    @include bgp(right bottom);
+    @include as(flex-end);
+    @include max(500px) {
+      @include as(center);
+      @include bgp(center bottom);
+    }
+  }
+}
+
+.hero__bubble {
+  @include gr(1);
+
+  // +max-w(500px)
+  // +mb($medium)
+  // +mt($mb-height + 10px)
+  // +min(320px)
+  //   +w(95%)
+  // +min(414px)
+  //   +w(82%)
+  // +min-md()
+  //   +h(500px)
+  //   +mt()
+  //   +mb($extra-large)
+  //   +bgp(right center)
+  // +min-lg()
+  //   +w(50%)
+  // +min-xl()
+  //   +w(55%)
+  @include max(375px) {
+    @include as(center);
+  }
+
+
+  > h1 {
+    @include fs(60px);
+    @include max(767px) {
+      @include pt(82px);
+      @include max(500px) {
+        @include fs(45px);
+        @include ta;
+      }
+
+
+      @include max(375px) {
+        @include pt(82px);
+        @include fs(48px);
+      }
+
+
+      @include max(320px) {
+        @include fs(30px);
+      }
+    }
+  }
+
+  > a.button--large {
+    @include mt(2.5vw);
+    @include max(500px) {
+      @include ml(auto);
+      @include mr(auto);
+      @include mb(2.5vw);
+      @include max(375px) {
+        @include mt(24px);
+        @include mb(24px);
+      }
+    }
+  }
+}
+
+.hero__pykl {
+  @include h(240px);
+
+  // +min(320px)
+  // // +w(80%)
+  @include min(375px) {
+    @include h(280px);
+  }
+
+
+  @include min(414px) {
+    @include h(378px);
+    @include mt($small);
+  }
+}
+
+.hero {
+  @include min-md {
+    @include max-h(560px);
+    @include jc;
+    @include ai;
+
+    flex-direction: row;
+  }
+
+
+  .intro {
+    &__header,
+    &__content {
+      @include w;
+      @include bgc($snow-1);
+      @include py(80px);
+      @include min-md {
+        @include py(120px);
+      }
+    }
+
+    &__content {
+      @include bgc($white);
+    }
+
+    &__title,
+    &__list {
+      @extend .container;
+
+      @include my;
+    }
+
+    &__title {
+      @extend %text-extra-large;
+
+      @include max-w(684px);
+      @include mx(auto);
+      @include ta;
+    }
+
+    &__list {
+      @include px;
+      @include flex;
+      @include wrap;
+    }
+
+    &__item {
+      @extend .col-sm-12, .col-md-4;
+
+      @include mb($extra-large);
+      @include ta;
+      @include before {
+        @include block;
+        @include mx(auto);
+        @include mb($medium);
+        @include w(120px);
+        @include h(120px);
+        @include bgs(contain);
+        @include bgr;
+        @include bgp;
+        @include min-sm {
+          @include w(160px);
+          @include h(160px);
+          @include pb;
+          @include mb($medium);
+        }
+      }
+
+
+      @include nth(1) {
+        @include before {
+          @include bgi("../../../assets/image/img-testimonial-1.svg");
+        }
+      }
+
+
+      @include nth(2) {
+        @include before {
+          @include bgi("../../../assets/image/img-testimonial-2.svg");
+        }
+      }
+
+
+      @include nth(3) {
+        @include before {
+          @include bgi("../../../assets/image/img-testimonial-3.svg");
+        }
+      }
+
+
+      @include min-sm {
+        @include px($gutter * 2);
+      }
+    }
+
+    &__text {
+      @extend %ui-small, %ui-smoke-2;
+    }
+  }
+}

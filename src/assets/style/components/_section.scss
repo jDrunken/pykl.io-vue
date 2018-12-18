@@ -1,0 +1,43 @@
+/** @modules section */
+
+.section {
+  @include py(80px);
+  @include min-md {
+    @include py(100px);
+  }
+}
+
+.section {
+  &__header {
+    @extend .row;
+
+    @include pb($large);
+    @include min-md {
+      @include pb(40px);
+    }
+  }
+
+  &__title {
+    @extend .col-sm-12, %ui-medium;
+
+    #network & {
+      @include c($white);
+    }
+  }
+}
+
+#network {
+  @include bgc($navy);
+}
+
+#portfolio {
+  @include bgc($snow-1);
+}
+
+#process {
+  @include bgc($white);
+}
+
+#contact {
+  @include bgc($mint-2);
+}

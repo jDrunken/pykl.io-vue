@@ -1,0 +1,47 @@
+/** @module Color
+ * 1. variables
+ * 2.
+ */
+
+/**
+ * @rules Color naming rules
+ * 1. by type - text || ui
+ *    - ui: ui elements only
+ *    - text: body content, heading etc.
+ * 2. by hierarchy
+ *    2-1. text
+ *         - title: $dark
+ *         - subtitle: $smoke-2
+ *         - body: $dark
+ *         - caption: $smoke-2
+ *    2-2. ui
+ *         - dark: $dark
+ *         - smoke-2: $smoke-2
+ *         - ...
+ *
+ *
+ */
+
+/// A map of colors used in `text-` type
+/// @props {key} - Type of text
+/// @props {value} - Color for the text
+$text-color-type: ("title": $dark, "subtitle": $smoke-2, "body": $dark, "caption": $smoke-2);
+
+/// A map of colors used in `ui-` type
+/// @props {key} - Name of color
+/// @props {value} - Color for the ui
+$ui-color-type: ("dark": $dark, "smoke-2": $smoke-2, "smoke-1": $smoke-1, "white": $white, "mint": $mint-2);
+
+/// @atoms Creates placeholders
+
+@each $type, $color in $text-color-type {
+  %text-#{$type} {
+    @include c($color);
+  }
+}
+
+@each $type, $color in $ui-color-type {
+  %ui-#{$type} {
+    @include c($color);
+  }
+}

@@ -1,0 +1,100 @@
+%card-horizontal {
+    @include flex()
+}
+
+%card-channel {
+    @include x-center()
+    @include ai(stretch)
+    @include shadow($shadow-dark)
+    @include trans(box-shadow 300ms 50ms)
+}
+
+#network {
+    .section__header {
+        @include pb;
+    }
+
+    .card__item {
+        @include mb($medium);
+    }
+
+    .card__item,
+    .channel__title {
+        @include px(20px);
+        @include min-sm {
+            @include px(10px);
+        }
+    }
+
+    .card__list {
+        @include mx(-20px);
+        @include min-sm {
+            @include mx(-10px);
+        }
+    }
+
+    .container {
+        @include px(20px);
+        @include min-sm {
+            @include px(10px);
+        }
+    }
+}
+
+.channel {
+    &__header {
+        @extend .row;
+
+        @include py(40px);
+        @include mx(-10px);
+        @include max-sm {
+            @include pb(24px);
+            @include mx(-20px);
+        }
+    }
+
+    &__title {
+        @extend .col-sm-12, %text-base, %text-title;
+    }
+}
+
+.card {
+    &.--channel {
+        a {
+            @extend %card-horizontal, %card-channel;
+        }
+
+        .card__img {
+            @include w(83px);
+            @include h(83px);
+
+            img {
+                @include w;
+                @include h(auto);
+            }
+        }
+
+        dl {
+            @extend %ui-small, %ui-smoke-2;
+
+            @include y-center;
+            @include mt($small);
+
+            dt {
+                @include mr($tiny);
+            }
+        }
+
+        @include hover {
+            a {
+                @include shadow($shadow-dark-hover);
+            }
+
+            .card__img {
+                img {
+                    transform: $scale;
+                }
+            }
+        }
+    }
+}

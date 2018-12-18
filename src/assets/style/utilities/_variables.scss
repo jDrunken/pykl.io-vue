@@ -1,0 +1,73 @@
+/** @global Bootstrap Grid System */
+$grid-columns: 12;
+$gutter: 15px;
+
+$breakpoint-sm: 540px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1170px;
+
+$grid-breakpoints: (sm: $breakpoint-sm, md: $breakpoint-md, lg: $breakpoint-lg);
+
+$container-sm: 540px;
+$container-md: 720px;
+$container-lg: 960px;
+$container-xl: 1200px;
+
+$container-max-widths: (sm: $container-sm, md: $container-md, lg: $container-lg);
+
+/** @global Unit(px) */
+$tiny: 4px;
+$small: 8px;
+$base: 16px;
+$medium: 24px;
+$large: 32px;
+$extra-large: 48px;
+
+/** @global Colors() */
+///@group colors
+
+$white: #ffffff;
+$snow-1: #F5F7F7;
+$snow-2: #F0F1F2;
+$snow-3: #b3b3b3;
+$smoke-1: #5C5C5C;
+$smoke-2: #4A4A4A;
+$purple-1: #645BD7;
+$purple-2: #5249C6;
+$mint-1: #F1F7F5;
+$mint-2: #20F7AA;
+$navy: #152246;
+$dark: #000000;
+
+/** @group border */
+$border-dark: 1px solid $dark;
+$border-mint: 1px solid $mint-1;
+
+/** @group box-shadow */
+$shadow-header: 0 0 10px rgba(0, 0, 0, 0.3);
+$shadow-base: 0px 4px 15px 0 rgba($dark, 0.05);
+$shadow-base-hover: 0px 2px 1px 0 rgba($dark, 0.2);
+$shadow-dark: 4px 4px 12px 0 rgba($dark, 0.8);
+$shadow-dark-hover: 0px 2px 4px 0 $dark;
+
+/** @group z-index */
+$z-lowest: -1000;
+$z-base: 0;
+$z-highest: 1000;
+
+// main variable
+$mb-width: 80%;
+$mb-max-width: 400px;
+$mb-i18n: 56px;
+$mb-height: 56px;
+$dk-height: 94px;
+
+// card view
+$card-br: 2px;
+$card-px: $medium;
+$card-py: 20px;
+
+$scale: scale(1.075);
+$scale-portfolio: scale(1.05);
+$trans-scale: transform 280ms ease-in-out;

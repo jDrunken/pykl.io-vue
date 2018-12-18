@@ -1,0 +1,8 @@
+#main {
+  @include w;
+  @include max-w(100%);
+  @include hidden;
+  @include min-md {
+    @include pt($dk-height);
+  }
+}

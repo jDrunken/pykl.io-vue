@@ -1,0 +1,84 @@
+$btn-height: 56px;
+
+/** @placeholder button */
+%button {
+    @include bgc(transparent);
+
+    cursor: pointer;
+}
+
+[class^='button'] {
+    @extend %button;
+
+    @include bd;
+}
+
+.button {
+    &--icon {
+        @include center;
+        @include w($btn-height);
+        @include h($btn-height);
+        @include bgs(contain);
+        @include bgp;
+        @include bgr;
+
+        &.--close {
+            @include bgi("~image/icon-close.svg");
+        }
+
+        &.--menu {
+            @include bgi("~image/icon-menu-mint.svg");
+
+            .pykl--stick & {
+                @include bgi("~image/icon-menu-dark.svg");
+            }
+        }
+    }
+
+    &--large {
+        @extend %ui-base;
+
+        @include flex;
+        @include jc;
+        @include ai;
+        @include max-w(270px);
+        @include h($btn-height);
+        @include px($medium);
+        @include br(2px);
+        @include sh(0);
+        @include trans(background-color 270ms);
+
+        box-sizing: border-box;
+
+        &.--dark {
+            @extend %ui-mint;
+
+            @include bgc(transparent);
+            @include hover {
+                @extend %ui-dark;
+
+                @include bgc(transparent);
+                @include bd(1px solid $dark);
+            }
+        }
+
+        &.--ghost {
+            @include bgc(transparent);
+            @include bd(1px solid $dark);
+            @include hover {
+                @extend %ui-mint;
+
+                @include bgc($dark);
+            }
+        }
+
+        &.--green {
+            @include c($dark);
+            @include bgc($mint-2);
+            @include hover {
+                @include c($mint-2);
+                @include bgc($dark);
+            }
+        }
+    }
+}

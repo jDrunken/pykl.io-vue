@@ -1,0 +1,113 @@
+.intro {
+  @include bgc($snow-1);
+
+  &__header {
+    @extend .row;
+
+    @include jc;
+  }
+
+  &__title {
+    @extend .col-sm-12, .col-md-8, %text-extra-large, %text-title;
+
+    @include max-w(680px);
+    @include px($gutter);
+    @include ta;
+  }
+
+  &__content {
+    @include bgc($white);
+    @include py(80px);
+    @include min-lg {
+      @include py(100px);
+    }
+  }
+
+  > .container {
+    @include mt;
+    @include py(80px);
+    @include min-lg {
+      @include py(120px);
+    }
+  }
+}
+
+.intro {
+  &__list {
+    @extend .row;
+
+    @include min-md {
+      @include ai(stretch);
+    }
+  }
+
+  &__item {
+    @extend .col-sm-12, .col-md-4;
+
+    @include max-md {
+      @include mb($extra-large);
+    }
+
+
+    @include before {
+      @include block;
+      @include w(120px);
+      @include h(120px);
+      @include mb($medium);
+      @include mx(auto);
+      @include bgr;
+      @include bgs(contain);
+      @include trans(transform 280ms);
+      @include min-lg {
+        @include mb($large);
+      }
+    }
+
+
+    @include nth(1) {
+      @include before {
+        @include bgi("../../image/img-testimonial-1.svg");
+      }
+    }
+
+
+    @include nth(2) {
+      @include before {
+        @include bgi("../../image/img-testimonial-2.svg");
+      }
+    }
+
+
+    @include nth(3) {
+      @include before {
+        @include bgi("../../image/img-testimonial-3.svg");
+      }
+    }
+
+
+    @include min-lg {
+      @include before {
+        @include block;
+        @include w(144px);
+        @include h(144px);
+      }
+    }
+
+
+    @include hover {
+      @include before {
+        transform: scale(1.065);
+      }
+    }
+  }
+
+  &__text {
+    @extend %text-small, %text-body;
+
+    @include px(40px);
+    @include ta;
+    @include min-sm {
+      @include px($gutter);
+    }
+  }
+}

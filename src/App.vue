@@ -1,29 +1,41 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<div id="app">
+    <Header/>
+    <main id="main">
+        <Intro/>
+        <Channel/>
+        <Portfolio/>
+        <Process/>
+        <Contact/>
+    </main>
+    <Footer/>
+</div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+<style lang="scss" src="style/components/_main.scss"></style>
+<style lang="scss" src="style/components/_button.scss"></style>
+<style lang="scss" src="style/components/_section.scss"></style>
+
+<script lang="ts">
+import Vue from 'vue';
+import Header from '@/components/Header.vue';
+import Intro from '@/components/Intro.vue';
+import Channel from '@/components/Channel.vue';
+import Portfolio from '@/components/Portfolio.vue';
+import Process from '@/components/Process.vue';
+import Contact from '@/components/Contact.vue';
+import Footer from '@/components/Footer.vue';
+
+export default Vue.extend({
+    name: 'Index',
+    components: {
+        Header,
+        Intro,
+        Channel,
+        Portfolio,
+        Process,
+        Contact,
+        Footer,
+    },
+});
+</script>

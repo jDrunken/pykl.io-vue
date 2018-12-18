@@ -1,0 +1,179 @@
+.process__list {
+    @extend .row;
+}
+
+.process__item {
+    @include w;
+    @include px($gutter);
+
+    &:not(:last-child) {
+        @include mb(30px);
+    }
+
+    @include min-lg {
+        @include w(20%);
+    }
+}
+
+.process {
+    @include flex;
+    @include jc;
+    @include ai(stretch);
+
+    &__wrap {
+        @include flex(column);
+        @include sh(0);
+        @include w(55%);
+
+        .process__title {
+            @extend %text-title, %text-small;
+
+            @include pt(8px);
+            @include fs(14px);
+            @include mb($small);
+
+            order: 2;
+
+            html[lang="en"] & {
+                @extend %text-base;
+            }
+        }
+
+        .process__text {
+            @extend %text-caption;
+
+            @include fs(12px);
+            @include lh(1.461538462);
+
+            order: 3;
+        }
+
+        p[lang='en'] {
+            @include mb($small);
+            @include fw("bold");
+
+            order: 1;
+
+            html[lang="en"] & {
+                visibility: hidden;
+            }
+
+            html[lang="ko"] & {
+                @include min-lg {
+                    @include rel;
+                    @include b(88px);
+                }
+            }
+        }
+    }
+
+    @include before {
+        @include rel;
+        @include z(1);
+        @include flex;
+        @include w(45%);
+        @include ai;
+        @include bgr;
+        @include bgp(top center);
+        @include trans(transform 200ms ease-in);
+    }
+
+
+    @include hover {
+        @include before {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.process {
+    @include min-lg {
+        @include ai;
+
+        flex-direction: column;
+
+        .process__wrap {
+            @include w;
+            @include ta;
+
+            order: 2;
+        }
+
+        @include before {
+            @include rel;
+            @include z(1);
+            @include h(64px);
+            @include bgr;
+            @include bgp;
+
+            order: 1;
+        }
+    }
+}
+
+.process__list {
+    @include rel;
+    @include before {
+        @include abs;
+        @include z(0);
+        @include l(25%);
+        @include t(20px);
+        @include b(50px);
+        @include w(1px);
+        @include bgc($dark);
+        @include min-lg {
+            @include t(17%);
+            @include r(100px);
+            @include l(100px);
+            @include h(1px);
+            @include w(initial);
+            @include bgc($dark);
+        }
+    }
+}
+
+.process__item {
+    @include nth(1) {
+        .process {
+            @include before {
+                @include bgi("~image/img-pickle-1.svg");
+            }
+        }
+    }
+
+
+    @include nth(2) {
+        .process {
+            @include before {
+                @include bgi("~image/img-pickle-2.svg");
+            }
+        }
+    }
+
+
+    @include nth(3) {
+        .process {
+            @include before {
+                @include bgi("~image/img-pickle-3.svg");
+            }
+        }
+    }
+
+
+    @include nth(4) {
+        .process {
+            @include before {
+                @include bgi("~image/img-pickle-4.svg");
+            }
+        }
+    }
+
+
+    @include nth(5) {
+        .process {
+            @include before {
+                @include bgi("~image/img-pickle-5.svg");
+            }
+        }
+    }
+}

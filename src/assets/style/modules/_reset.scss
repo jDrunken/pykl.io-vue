@@ -1,0 +1,204 @@
+/** @module Reset
+ * 1. placeholders
+ * 2. mixins
+ * 3. reset
+ *
+ * [Note] Variables are mostly imported from:
+ *   utilities/variables, modules/typography
+ */
+
+/** 1. placeholders */
+
+%width {
+  @include w;
+}
+
+%height {
+  @include h;
+}
+
+%margin {
+  @include my;
+}
+
+%padding {
+  @include p;
+}
+
+%border {
+  @include bd;
+}
+
+%border-radius {
+  @include br;
+}
+
+%outline {
+  outline: none;
+}
+
+%appearance {
+  appearance: none;
+}
+
+%box-sizing {
+  box-sizing: border-box;
+}
+
+%box-shadow {
+  @include shadow;
+}
+
+%text-decoration {
+  @include td;
+}
+
+%font-family-ko {
+  $ff-ko: "SpoqaHanSans", sans-serif;
+
+  @include ff($ff-ko);
+}
+
+%font-family-en {
+  $ff-en: "CircularStd", sans-serif;
+
+  @include ff($ff-en);
+}
+
+%font-size {
+  $fs-base: 16px;
+
+  @include fs($fs-base);
+}
+
+%font-weight {
+  $fw-regular: 400;
+
+  @include fw($fw-regular);
+}
+
+%color {
+  @include c($dark);
+}
+
+%word-break {
+  word-break: keep-all;
+}
+
+%font-inherit {
+  @include fs(inherit);
+  @include lh(inherit);
+  @include c(inherit);
+}
+
+%list-style {
+  @include pl;
+  @include ml;
+
+  list-style-type: none;
+}
+
+/// @list - A list of text elements
+$text-elements: h1, h2, p, strong, blockquote, em, span, label;
+
+/// @list - A list of reset properties that need to be applied to text elements
+$reset-text-elements: "word-break";
+
+/// @list - A list of form elements
+$form-elements: input, textarea, select, button, form;
+
+/// @list - A list of reset properties that need to be applied to form elements
+$reset-form-elements: "appearance", "border", "outline", "border-radius", "box-shadow";
+
+/// @list - A list of list elements
+$list-elements: ul, ol, dl, li, dt, dd;
+$reset-list-elements: "list-style", "font-inherit";
+
+/// @list - A list of block-level elements
+$block-level-elements: html, body, h1, h2, p, strong, blockqoute, ul, ol, dl, li, dt, dd, form, div, section, article, nav, aside, header, footer;
+$reset-block-level-elements: "margin";
+
+/** 2. mixin */
+/// Resets default styles
+@mixin reset($items) {
+  @each $item in $items {
+    @extend %#{$item};
+  }
+}
+
+/** 3. reset */
+/// Resets `box-sizing` property
+$all-elements: $text-elements + $form-elements + $list-elements;
+
+@each $element in $all-elements {
+  #{$element} {
+    @include reset("box-sizing");
+  }
+}
+
+/// Resets text-elements
+@each $element in $text-elements + $list-elements + a {
+  #{$element} {
+    html[lang='ko'] & {
+      @include reset($reset-text-elements);
+      @include reset("font-family-ko");
+
+      &[lang='en'] {
+        @include reset("font-family-en");
+      }
+    }
+
+    html[lang='en'] & {
+      @include reset($reset-text-elements);
+      @include reset("font-family-en");
+    }
+  }
+}
+
+/// Resets form-elements
+@each $element in $form-elements {
+  #{$element} {
+    @include reset($reset-form-elements);
+
+    &:hover,
+    &:focus,
+    &:active {
+      @include reset($reset-form-elements);
+    }
+  }
+}
+
+/// Resets list-elements
+@each $element in $list-elements {
+  #{$element} {
+    @include reset($reset-list-elements);
+  }
+}
+
+/// Resets block-level-elements, especially removing margins
+@each $element in $block-level-elements {
+  #{$element} {
+    @include reset($reset-block-level-elements);
+  }
+}
+
+/// Resets anchor
+* {
+  box-sizing: border-box;
+}
+
+a {
+  @include reset(("text-decoration", "font-inherit"));
+
+  html[lang='ko'] & {
+    @include reset("font-family-ko");
+  }
+
+  html[lang='en'] & {
+    @include reset("font-family-en");
+  }
+}
+
+body {
+  @include mx;
+}

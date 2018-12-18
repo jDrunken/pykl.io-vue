@@ -1,0 +1,504 @@
+/** @group responsive */
+@mixin min($v) {
+  @media screen and (min-width: $v) {
+    @content;
+  }
+}
+
+@mixin max($v) {
+  @media screen and (max-width: $v) {
+    @content;
+  }
+}
+
+@mixin min-sm {
+  @media screen and (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin min-md {
+  @media screen and (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin min-lg {
+  @media screen and (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin min-xl {
+  @media screen and (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+@mixin max-xs {
+  @media screen and (max-width: $breakpoint-xs) {
+    @content;
+  }
+}
+
+@mixin max-sm {
+  @media screen and (max-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin max-md {
+  @media screen and (max-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin max-lg {
+  @media screen and (max-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin max-xl {
+  @media screen and (max-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+/** @group box model */
+@mixin w($w: 100%) {
+  width: $w;
+}
+
+@mixin max-w($w: initial) {
+  max-width: $w;
+}
+
+@mixin min-w($w: initial) {
+  min-width: $w;
+}
+
+@mixin h($h: auto) {
+  height: $h;
+}
+
+@mixin max-h($h: initial) {
+  max-height: $h;
+}
+
+@mixin min-h($h: initial) {
+  min-height: $h;
+}
+
+@mixin pl($p: 0) {
+  padding-left: $p;
+}
+
+@mixin pr($p: 0) {
+  padding-right: $p;
+}
+
+@mixin pt($p: 0) {
+  padding-top: $p;
+}
+
+@mixin pb($p: 0) {
+  padding-bottom: $p;
+}
+
+@mixin p($p: 0) {
+  padding: $p;
+}
+
+@mixin px($p: 0) {
+  @include pl($p);
+  @include pr($p);
+}
+
+@mixin py($p: 0) {
+  @include pt($p);
+  @include pb($p);
+}
+
+@mixin bd($v: none) {
+  border: $v;
+}
+
+@mixin br($v: 0) {
+  border-radius: $v;
+}
+
+@mixin ml($m: 0) {
+  margin-left: $m;
+}
+
+@mixin mr($m: 0) {
+  margin-right: $m;
+}
+
+@mixin mt($m: 0) {
+  margin-top: $m;
+}
+
+@mixin mb($m: 0) {
+  margin-bottom: $m;
+}
+
+@mixin m($m: 0) {
+  margin: $m;
+}
+
+@mixin mx($m: 0) {
+  @include ml($m);
+  @include mr($m);
+}
+
+@mixin my($m: 0) {
+  @include mt($m);
+  @include mb($m);
+}
+
+/** @group display */
+@mixin block {
+  display: block;
+}
+
+@mixin inblock {
+  display: inline-block;
+}
+
+@mixin inline {
+  display: inline-block;
+}
+
+@mixin inflex {
+  display: inline-flex;
+}
+
+@mixin none {
+  display: none;
+}
+
+@mixin flex($dir: row) {
+  display: flex;
+  flex-direction: $dir;
+}
+
+@mixin jc($j: center) {
+  justify-content: $j;
+}
+
+@mixin ai($a: center) {
+  align-items: $a;
+}
+
+@mixin ac($a: center) {
+  align-content: $a;
+}
+
+@mixin as($a: center) {
+  align-self: $a;
+}
+
+@mixin wrap($w: wrap) {
+  flex-wrap: $w;
+}
+
+@mixin gr($g: 0) {
+  flex-grow: $g;
+}
+
+@mixin sh($s: 0) {
+  flex-shrink: $s;
+}
+
+/** @group position */
+@mixin pos($p) {
+  position: $p;
+}
+
+@mixin static {
+  @include pos(static);
+}
+
+@mixin rel {
+  @include pos(relative);
+}
+
+@mixin abs {
+  @include pos(absolute);
+}
+
+@mixin fix {
+  @include pos(fixed);
+}
+
+@mixin z($v: 1) {
+  z-index: $v;
+}
+
+@mixin t($v: 0) {
+  top: $v;
+}
+
+@mixin b($v: 0) {
+  bottom: $v;
+}
+
+@mixin l($v: 0) {
+  left: $v;
+}
+
+@mixin r($v: 0) {
+  right: $v;
+}
+
+/** @group center */
+@mixin center {
+  @include flex;
+  @include ai;
+  @include jc;
+}
+
+@mixin x-center {
+  @include flex;
+  @include jc;
+}
+
+@mixin y-center {
+  @include flex;
+  @include ai;
+}
+
+.--y-center {
+  @include y-center;
+}
+
+.--x-between {
+  @include jc(space-between);
+}
+
+@mixin pos-x-center {
+  @include abs;
+  @include l(50%);
+  @include r(initial);
+
+  transform: translateX(-50%);
+}
+
+@mixin pos-y-center {
+  @include abs;
+  @include t(50%);
+  @include b(initial);
+
+  transform: translateY(-50%);
+}
+
+@mixin pos-center {
+  @include abs;
+  @include t(50%);
+  @include b(initial);
+  @include l(50%);
+  @include r(initial);
+
+  transform: translate(-50%, -50%);
+}
+
+/** @group background */
+@mixin bgi($url) {
+  background-image: url($url);
+}
+
+@mixin bge($v) {
+  background-image: $v;
+}
+
+// `bge` stands for background effect
+// i.e. background-image: linear-gradient(...), ...
+
+@mixin bgp($p: center center) {
+  background-position: $p;
+}
+
+@mixin bgc($c: transparent) {
+  background-color: $c;
+}
+
+@mixin bgs($s: cover) {
+  background-size: $s;
+}
+
+@mixin bgr($r: no-repeat) {
+  background-repeat: $r;
+}
+
+@mixin bg($v) {
+  @include bgi($v);
+  @include bgs;
+  @include bgp;
+  @include bgr;
+}
+
+/** @group typography */
+@mixin fs($v: 1em) {
+  font-size: $v;
+}
+
+@mixin ff($v: $fontFamilyPrimary) {
+  font-family: $v;
+}
+
+@mixin fw($v: $fontWeightRegular) {
+  @if type-of($v) == "number" {
+    font-weight: $v;
+  }
+  @else {
+    font-weight: fw($v);
+  }
+}
+
+@mixin lh($v: 1) {
+  line-height: $v;
+}
+
+@mixin c($v: inherit) {
+  color: $v;
+}
+
+@mixin ls($v: 0) {
+  letter-spacing: $v;
+}
+
+@mixin ta($v: center) {
+  text-align: $v;
+}
+
+@mixin fst($v: normal) {
+  font-style: $v;
+}
+
+@mixin tt($v: uppercase) {
+  text-transform: $v;
+}
+
+@mixin td($v: none) {
+  text-decoration: $v;
+}
+
+/** @group overflow */
+@mixin over-x($v: auto) {
+  overflow-x: $v;
+}
+
+@mixin over-y($v: auto) {
+  overflow-y: $v;
+}
+
+@mixin over($v: auto) {
+  @include over-x($v);
+  @include over-y($v);
+}
+
+@mixin hidden-x {
+  @include over-x(hidden);
+}
+
+@mixin hidden-y {
+  @include over-y(hidden);
+}
+
+@mixin hidden {
+  @include over(hidden);
+}
+
+/** @group ui state */
+@mixin hover {
+  &:hover {
+    @content;
+  }
+}
+
+@mixin focus {
+  &:focus {
+    @content;
+  }
+}
+
+@mixin active {
+  &:active {
+    @content;
+  }
+}
+
+@mixin visited {
+  &:visited {
+    @content;
+  }
+}
+
+/** @group selector */
+@mixin nth($v) {
+  &:nth-child(#{$v}) {
+    @content;
+  }
+}
+
+@mixin nth-type($v) {
+  &:nth-of-type(#{$v}) {
+    @content;
+  }
+}
+
+@mixin first {
+  &:first-child() {
+    @content;
+  }
+}
+
+@mixin first-type {
+  &:first-of-type() {
+    @content;
+  }
+}
+
+@mixin last {
+  &:last-child() {
+    @content;
+  }
+}
+
+@mixin last-type {
+  &:last-of-type() {
+    @content;
+  }
+}
+
+/** @group pseudo class */
+@mixin before($c: "") {
+  &::before {
+    content: $c;
+
+    @content;
+  }
+}
+
+@mixin after($c: "") {
+  &::after {
+    content: $c;
+
+    @content;
+  }
+}
+
+/** @group etc */
+@mixin shadow($v: none) {
+  box-shadow: $v;
+}
+
+@mixin o($v: 0) {
+  opacity: $v;
+}
+
+@mixin trans($v: all 200ms) {
+  transition: $v;
+}

@@ -1,0 +1,194 @@
+%link {
+  @include y-center;
+  @include h($mb-i18n);
+  @include px($gutter);
+  @include ff(ff("en") !important);
+  @include trans(color 1000ms);
+
+  white-space: nowrap;
+
+  @include max-md {
+    @include px(30px);
+    @include py(20px);
+    @include c($white);
+  }
+
+
+  @include min-md {
+    @include px($base);
+  }
+}
+
+%link-active {
+  @include fw(700);
+  @include c($mint-2);
+
+  &.pykl--stick {
+    @include c($dark);
+  }
+}
+
+%gnb-link {
+  @extend %ui-base;
+
+  @include c($white);
+  @include min-md {
+    @include fs($fs-small);
+
+    .pykl--stick & {
+      @include c($smoke-2);
+    }
+  }
+}
+
+%lnb-link {
+  @extend %ui-small;
+
+  @include c($white);
+  @include min-md {
+    @include c($white);
+
+    .pykl--stick & {
+      @include c($smoke-2);
+    }
+  }
+}
+
+%lnb-active {
+  @extend %ui-small;
+
+  @include c($mint-2);
+  @include fw("bold");
+
+  .pykl--stick & {
+    @include c($dark);
+  }
+}
+
+.gnb {
+  a {
+    @extend %link, %gnb-link;
+  }
+
+  @include max-md {
+    @include abs;
+    @include t;
+    @include r;
+    @include w($mb-width);
+    @include max-w($mb-max-width);
+    @include pt($mb-height + 5px);
+    @include h(100vh);
+    @include jc(flex-end);
+    @include bgc($dark);
+
+    &.show {
+      @include r(0);
+    }
+
+    .button--icon {
+      @include flex;
+      @include z(1);
+    }
+
+    .button--icon.--close {
+      @include abs;
+      @include t(5px);
+      @include r;
+      @include z(100);
+    }
+  }
+
+
+  @include min-md {
+    @include rel;
+    @include y-center;
+    @include pr($base);
+    @include pt;
+    @include after {
+      @include pos-y-center;
+      @include r;
+      @include w(1px);
+      @include h(1rem);
+      @include bgc($snow-3);
+    }
+  }
+
+
+  @include min-lg {
+    @include pr($base);
+  }
+}
+
+.i18n {
+  @include y-center;
+
+  a {
+    @extend %link, %lnb-link;
+  }
+
+  @include max-md {
+    @include abs;
+    @include t(5px);
+    @include r;
+    @include w($mb-width);
+    @include max-w($mb-max-width);
+  }
+
+
+  @include min-md {
+    @include pl($base);
+
+    .ko {
+      @include pr;
+    }
+  }
+
+
+  @include min-lg {
+    @include pl($medium);
+  }
+
+
+  html[lang='en'] & {
+    .en {
+      @extend %link, %lnb-active;
+    }
+  }
+
+  html[lang='ko'] & {
+    .ko {
+      @extend %link, %lnb-active;
+
+      @include pr;
+    }
+  }
+}
+
+#nav {
+  @include w;
+  @include h($dk-height);
+  @include y-center;
+  @include l;
+  @include max-md {
+    @include fix;
+    @include z(1);
+    @include t;
+    @include l(100%);
+    @include w;
+    @include h(100vh);
+    @include trans(left 500ms);
+
+    &.show {
+      @include l(0);
+    }
+  }
+
+
+  @include min-md {
+    @include jc(flex-end);
+
+    .button--icon {
+      @include none;
+    }
+  }
+}

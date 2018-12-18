@@ -1,0 +1,69 @@
+#home {
+  @include rel;
+  @include hidden;
+  @include before {
+    @include abs;
+    @include z(-1);
+    @include t;
+    @include l;
+    @include w(66%);
+    @include h(100%);
+    @include bgc($purple-1);
+    @include bgi("../../../assets/image/bg-hero@2x.png");
+    @include bgr;
+    @include bgr(repeat-x);
+    @include bgs(203px 192px);
+    @include bgp(center 31%);
+  }
+
+
+  @include after {
+    @include abs;
+    @include z(-1);
+    @include t;
+    @include r;
+    @include w(34%);
+    @include h(100%);
+    @include bgc($purple-2);
+    @include bgi("../../../assets/image/bg-hero@2x.png");
+    @include bgr;
+    @include bgr(repeat-x);
+    @include bgs(203px 192px);
+    @include bgp(center 31%);
+  }
+
+
+  @include max(375px) {
+    @include before {
+      @include bgs(auto 9%);
+      @include bgp(center 26%);
+    }
+
+
+    @include after {
+      @include bgs(auto 9%);
+      @include bgp(center 26%);
+    }
+  }
+
+
+  @include max(320px) {
+    @include before {
+      @include bgs(auto 8%);
+      @include bgp(center 18%);
+    }
+
+
+    @include after {
+      @include bgs(auto 8%);
+      @include bgp(center 18%);
+    }
+  }
+
+
+  .container {
+    @include min-sm {
+      @include rel;
+    }
+  }
+}

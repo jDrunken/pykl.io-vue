@@ -1,5 +1,7 @@
 # pykl.io-vue
 
+pykl 사이트를 vue 기반으로 변경중
+
 ## Project setup
 ```
 npm install
@@ -37,3 +39,20 @@ npm run test:unit
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### channel crawler
+
+run
+
+```
+node crawler
+```
+
+or
+
+run for dev (REPL)
+```
+npm install -g nodemon
+nodemon crawler
+```

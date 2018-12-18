@@ -1,0 +1,52 @@
+.pykl-header {
+  @include fix;
+  @include z(100);
+  @include t;
+  @include l;
+  @include w;
+  @include h($mb-height);
+  @include trans(background-color 200ms);
+
+  .pykl {
+      a {
+          @include inblock;
+          @include w(74px);
+          @include h($mb-height);
+          @include my;
+          @include ml(-1px);
+          @include bg("../../image/logo-pykl.svg");
+          @include bgs(contain);
+
+          text-indent: -9999px;
+      }
+  }
+
+  .button--icon.--menu {
+      @include rel;
+      @include l(13px);
+  }
+
+  @include bgc($dark);
+
+  &.pykl--stick {
+      @include bgc($white !important);
+      @include shadow($shadow-header);
+  }
+}
+
+.pykl-header {
+    @include min-md {
+        @include h($dk-height);
+
+        .pykl {
+            a {
+                @include w(130px);
+                @include h($dk-height);
+            }
+        }
+
+        .button--icon {
+            @include none;
+        }
+    }
+}

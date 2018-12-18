@@ -1,0 +1,15 @@
+/**
+ * Managing `z-index`
+ *
+ * $z-indexes
+ *   @props {string} key - Layer's name
+ *   @props {number} value - Z value
+ * z-layer($l)
+ *   @param {string} $l - Layer's name
+ */
+
+$z-indexes: ("below": -1, "default": 0, "above": 1, "header-1": 1000, "header-2": 2000, "dropdown": 4000);
+
+@function z-layer($l) {
+  @return map-get($z-indexes, $l);
+}
