@@ -10,7 +10,7 @@
         <section class="section__content">
             <h1 class="sr-only">Pykl 서비스 이용 방법</h1>
             <ol class="process__list">
-                <li class="process__item" v-for="list in $t('step')">
+                <li class="process__item" v-bind:key="list.title" v-for="list in $t('step')">
                     <article class="process">
                         <div class="process__wrap">
                             <h1 class="process__title">{{list.title}}</h1>

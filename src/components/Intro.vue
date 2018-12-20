@@ -25,7 +25,7 @@
         <div class="intro__content">
             <div class="container">
                 <ul class="intro__list">
-                    <li class="intro__item" v-for="desc in $t('introduce.text')">
+                    <li class="intro__item" v-bind:key="desc.index" v-for="desc in $t('introduce.text')">
                         <p class="intro__text" v-html="desc"></p>
                     </li>
                 </ul>
@@ -51,7 +51,7 @@
     "ko": {
         "Download a proposal": "제안서 다운로드",
         "introduce" : {
-            "title" : "피클 네트워크 <span lang=\"en\">(PYKL Network)</span> 는 암호화폐 생태계의 트렌드를 리드하는 크리에이터들이 모여있는 국내 최고의 크립토 마케팅 네트워크입니다.",
+            "title" : "피클 네트워크 <span lang='en'>(PYKL Network)</span> 는 암호화폐 생태계의 트렌드를 리드하는 크리에이터들이 모여있는 국내 최고의 크립토 마케팅 네트워크입니다.",
             "text" : [
                 "스팀잇, 유튜브, 아프리카, 블로그, 카페 등 다양한 채널의 총 88만 팔로워/구독자를 보유한 크립토 인플루언서 네트워크 활용",
                 "프로젝트의 성격과 타깃에 따라 적합한 인플루언서 추천 및 국내 시장에서의 브랜딩 & 포지셔닝",

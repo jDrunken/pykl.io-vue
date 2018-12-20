@@ -16,7 +16,7 @@
 <style lang="scss" src="style/components/_button.scss"></style>
 <style lang="scss" src="style/components/_section.scss"></style>
 
-<script lang="ts">
+<script>
 import Vue from 'vue';
 import Header from '@/components/Header.vue';
 import Intro from '@/components/Intro.vue';
