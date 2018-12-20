@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import VueScrollTo from 'vue-scrollto';
 
 Vue.use(Router);
 
@@ -8,9 +9,8 @@ export default new Router({
     base: process.env.BASE_URL,
     routes: [
         {
-            path: '/',
-            name: '/',
-        },
+            path: '/'
+        }
         // {
         // path: '/about',
         // name: 'about',
@@ -20,5 +20,15 @@ export default new Router({
         // component: () => import([> webpackChunkName: "about" <] './views/About.vue'),
         // },
     ],
+    scrollBehavior(to, from, savedPosition) {
+        if (to.hash) {
+            VueScrollTo.scrollTo(to.hash, 700);
+            return { selector: to.hash }
+        } else if (savedPosition) {
+            return savedPosition;
+        } else {
+            return { x: 0, y: 0 }
+        }
+    }
 });
 
