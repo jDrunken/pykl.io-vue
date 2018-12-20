@@ -31,7 +31,7 @@
                         </li>
                     </ul>
                     <div class="i18n">
-                        <h1 class="sr-only">{{ $t('selectlanguage') }}</h1>
+                        <h1 class="sr-only">{{ $t('select language') }}</h1>
                         <a href="#ko" class="en" v-on:click="changeLocale('en',$event);">Eng</a>
                         <a href="#en" class="ko" v-on:click="changeLocale('ko',$event);">한국어</a>
                     </div>
@@ -48,10 +48,10 @@
 <i18n>
 {
     "en" : {
-        "selectlanguage" : "select language"
+        "select language" : "select language"
     },
     "ko" : {
-        "selectlanguage" : "언어 선택"
+        "select language" : "언어 선택"
     }
 }
 </i18n>
