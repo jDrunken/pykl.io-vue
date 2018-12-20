@@ -15,11 +15,11 @@
             </header>
 
             <ul class="card__list">
-                <li class="card__item" v-for="youtube in youtube">
+                <li class="card__item" v-bind:key="youtube.name" v-for="youtube in youtube">
                     <article class="card --channel">
-                        <a target="_blank" v-bind:href="youtube.url">
+                        <a target="_blank" v-bind:href="youtube.href">
                             <div class="card__img">
-                                <img v-bind:src="youtube.img" alt="">
+                                <img v-bind:src="youtube.image" alt="">
                             </div>
                             <div class="card__content">
                                 <h1 class="card__title">{{ youtube.name }}</h1>
@@ -37,22 +37,22 @@
         <section class="section__content">
             <header class="channel__header">
                 <h1 class="channel__title">
-                    <img src="../assets/image/logo-steemit.svg" alt="스팀잇">
+                    <img src="../assets/image/logo-steemit.svg" alt="Steemit">
                 </h1>
             </header>
 
             <ul class="card__list">
-                <li class="card__item">
+                <li class="card__item" v-bind:key="steemit.name" v-for="steemit in steemit">
                     <article class="card --channel">
-                        <a target="_blank" href="https://steemit.com/@virus707">
+                        <a target="_blank" v-bind:href="steemit.href">
                             <div class="card__img">
-                                <img src="../assets/image/channel/virus707.jpg" alt="">
+                                <img v-bind:src="steemit.image" alt="">
                             </div>
                             <div class="card__content">
-                                <h1 class="card__title" lang="en">@virus707</h1>
+                                <h1 class="card__title" lang="en">@{{ steemit.name }}</h1>
                                 <dl>
-                                    <dt>팔로워</dt>
-                                    <dd>6,155</dd>
+                                    <dt>{{ $t('follower') }}</dt>
+                                    <dd>{{ steemit.subscriber }}</dd>
                                 </dl>
                             </div>
                         </a>
@@ -70,34 +70,28 @@
 <i18n>
 {
     "en" : {
-        "subscriber" : "Subscribers"
+        "subscriber" : "Subscribers",
+        "follower" : "Follower"
     },
     "ko" : {
-        "subscriber" : "구독자"
+        "subscriber" : "구독자",
+        "follower" : "팔로워"
     }
 }
 </i18n>
 
 <script lang="ts">
+import ChannelData from '../conf/channel_info.json';
+
 export default {
     name : 'Network',
+    component : {
+        ChannelData
+    },
     data() {
         return {
-            youtube : [
-                {
-                    name : '킬러웨일',
-                    img : '../assets/image/channel/img-channel-1-1.jpg',
-                    subscriber : 36728,
-                    url : 'https://www.youtube.com/channel/UCFYXE2w60jhpCO9uKvjZvVQ/featured',
-                },
-            ],
-            steemit : [
-                {
-                    name : '@virus707',
-                    img : '../assets/image/channel/virus707.jpg',
-                    subscriber : 6155,
-                },
-            ],
+            youtube : ChannelData.youtube,
+            steemit : ChannelData.steemit
         };
     },
 };
