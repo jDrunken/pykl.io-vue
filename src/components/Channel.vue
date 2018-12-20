@@ -22,8 +22,8 @@
                                 <img v-bind:src="youtube.image" alt="">
                             </div>
                             <div class="card__content">
-                                <h1 class="card__title">{{ youtube.name }}</h1>
-                                <dl>
+                                <h1 class="card__title">{{ youtube.name.replace(/\[.+?\]/,'')}}</h1>
+                                <dl v-if=youtube.subscriber>
                                     <dt>{{ $t('subscriber') }}</dt>
                                     <dd>{{ youtube.subscriber }}</dd>
                                 </dl>
@@ -90,6 +90,7 @@ export default {
     },
     data() {
         return {
+            // 구독자 순으로 역정렬을 해야됩니다. 지금은 구독자순이 아니라서...
             youtube : ChannelData.youtube,
             steemit : ChannelData.steemit
         };
