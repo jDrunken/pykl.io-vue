@@ -11,33 +11,58 @@ const result = {
     youtube : [],
     steemit : []
 };
+
 let provider;
+// let imageFileName;
+
+// 디렉토리가 없으면 만든다.
+let directory = {
+    image : '../src/assets/image/channel/',
+    conf : '../src/conf/'
+};
+
+// if (!fs.existsSync(directory.image)) {
+    // fs.mkdirSync(directory.image);
+    // console.log('이미지 폴더를 생성했습니다.');
+// }
+
+if (!fs.existsSync(directory.conf)) {
+    fs.mkdirSync(directory.conf);
+    console.log('json 파일이 저장될 폴더를 생성했습니다.');
+}
+
 
 // 이미지 다운로드 처리
+// const downloadImage = function(uri, filename, callback){
+    // request.head(uri, async function(err, res, body){
 
-let downloadImage = function(uri, filename, callback){
-    request.head(uri, function(err, res, body){
+        // let extension;
 
-        // console.log(uri);
-        // console.log(res.headers['content-type']);
+        // if (/jpg|png|gif/gi.test(uri)) {
+            // extension = uri.substr(-3,3);
+        // } else {
+            // extension = ((_ext) => {
+                // return {
+                    // 'jpeg' : 'jpg',
+                    // 'png' : 'png',
+                    // 'gif' : 'gif'
+                // }[_ext]
+            // })(res.headers['content-type'].split('/')[1]);
+        // }
 
-        let extension;
+        // await request(uri).pipe(
+            // fs.createWriteStream(directory.image + provider.id + '.' + extension)
+        // ).pipe(
+            // (function () {
+               // return imageFileName = provider.id + '.' + extension;
+            // })()
+        // ).on('close', callback);
+    // });
+// };
 
-        if (/jpg|png|gif/gi.test(uri)) {
-            extension = uri.substr(-3,3);
-        } else {
-            extension = ((_ext) => {
-                return {
-                    'jpeg' : 'jpg',
-                    'png' : 'png',
-                    'gif' : 'gif'
-                }[_ext]
-            })(res.headers['content-type'].split('/')[1]);
-        }
-
-        request(uri).pipe(fs.createWriteStream('../src/assets/image/channel/'+provider.id+'.'+extension)).on('close', callback);
-    });
-};
+// 파일명 생성 :: url을 받아와서 파일명으로 가공한다.
+// const getFileName = function (uri) {
+// };
 
 // 채널 정보 긁어오기
 async function get () {
@@ -51,39 +76,42 @@ async function get () {
             $ = cheerio.load(res.body);
             let subscriber = $('span.yt-subscription-button-subscriber-count-branded-horizontal.subscribed.yt-uix-tooltip').text();
             let name = $('a.branded-page-header-title-link').text();
-            let image = $('img.channel-header-profile-image').attr('src')
-            downloadImage(image, provider.id , function(){
-                // console.log('image downloaded');
-            });
+
+            let src = $('img.channel-header-profile-image').attr('src')
+            // await downloadImage(src, provider.id, function () {});
 
             let href = url;
             result.youtube.push({
                 'name' : name,
                 'href' : href,
-                'image' : image,
+                // 'image' : imageFileName,
+                'image' : src,
                 'subscriber' : subscriber
             });
             console.log('done : ' + provider.channel + ' || ' + name);
         } else if (provider.channel === 'steemit') {
             let subscriber = await got('https://api.steemjs.com/get_follow_count?account='+provider.id).then(res => {
-                return JSON.parse(res.body).follower_count;
+                return JSON.parse(res.body).follower_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             });
 
             let name = provider.id;
-            let image = await got('https://steemitimages.com/u/' + provider.id + '/avatar').then(res => {
-                if (!!res.url) {
-                    downloadImage(res.url, provider.id , function(){
-                        // console.log('image downloaded');
-                    });
-                }
-            });
 
+            // let src = await got('https://steemitimages.com/u/' + provider.id + '/avatar').then(res => {
+                // console.log(res.body);
+                // return JSON.parse(JSON.parse(res.body)[0].json_metadata).profile.profile_image;
+                // if (!!res.url) {
+                    // downloadImage(res.url, provider.id, function () {});
+                // }
+            // });
+
+            let src = 'https://steemitimages.com/u/' + provider.id + '/avatar';
             let href = 'https://steemit.com/@'+provider.id;
 
             result.steemit.push({
                 'name' : name,
                 'href' : href,
-                'image' : image,
+                // 'image' : imageFileName,
+                'image' : src,
                 'subscriber' : subscriber
             });
             console.log('done : ' + provider.channel + ' || ' + name);
@@ -94,5 +122,5 @@ async function get () {
 (async () => {
     await get();
     result.timestamp = Date.now();
-    fs.writeFileSync('../src/conf/channel_info.json', JSON.stringify(result));
+    fs.writeFileSync(directory.conf + '/channel_info.json', JSON.stringify(result));
 })();
