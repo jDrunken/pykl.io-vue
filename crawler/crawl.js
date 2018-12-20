@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 const list = require('./resource.json');
 const got = require('got');
 const cheerio = require('cheerio');
@@ -18,7 +19,7 @@ let provider;
 // 디렉토리가 없으면 만든다.
 let directory = {
     image : '../src/assets/image/channel/',
-    conf : '../src/conf/'
+    conf : path.join(__dirname, '..','src','conf')
 };
 
 // if (!fs.existsSync(directory.image)) {
