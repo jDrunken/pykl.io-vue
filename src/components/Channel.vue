@@ -80,7 +80,7 @@
 }
 </i18n>
 
-<script lang="ts">
+<script>
 import ChannelData from '../conf/channel_info.json';
 
 export default {

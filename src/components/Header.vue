@@ -31,7 +31,7 @@
                         </li>
                     </ul>
                     <div class="i18n">
-                        <h1 class="sr-only">언어 선택</h1>
+                        <h1 class="sr-only">{{ $t('selectlanguage') }}</h1>
                         <a href="#ko" class="en" v-on:click="changeLocale('en',$event);">Eng</a>
                         <a href="#en" class="ko" v-on:click="changeLocale('ko',$event);">한국어</a>
                     </div>
@@ -45,11 +45,19 @@
 <style lang="scss" src="style/components/_header.scss"></style>
 <style lang="scss" src="style/components/_nav.scss"></style>
 
-<script lang="ts">
-import Vue from 'vue';
+<i18n>
+{
+    "en" : {
+        "selectlanguage" : "select language"
+    },
+    "ko" : {
+        "selectlanguage" : "언어 선택"
+    }
+}
+</i18n>
 
-
-export default Vue.extend({
+<script>
+export default ({
     name : 'Header',
     methods : {
         // 언어 변환 버튼

@@ -67,7 +67,7 @@
 <style lang="scss" scoped src="style/components/_home.scss"></style>
 <style lang="scss" scoped src="style/components/_hero.scss"></style>
 
-<script lang="ts">
+<script>
 export default {
     name : 'Intro',
 };

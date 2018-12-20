@@ -80,7 +80,7 @@
 }
 </i18n>
 
-<script lang="ts">
+<script>
 export default ({
     name : 'Process',
 });

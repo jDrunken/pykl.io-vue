@@ -8,7 +8,7 @@
 
 <style lang="scss" src="style/components/_footer.scss"></style>
 
-<script lang="ts">
+<script>
 export default ({
     name: 'Footer',
 });

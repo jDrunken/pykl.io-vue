@@ -11,7 +11,7 @@
                 <h1 class="sr-only">{{ $t('case')}}</h1>
 
                 <ul class="card__list">
-                    <li class="card__item" v-for="list in lists">
+                    <li class="card__item" v-bind:key="list.index" v-for="list in lists">
                         <article class="card --portfolio">
                             <a class="hit" target="_black" :href="list.url">
                                 <div class="card__img">
@@ -45,7 +45,7 @@
 }
 </i18n>
 
-<script lang="ts">
+<script>
 export default ({
     name: 'Portfolio',
     data() {
