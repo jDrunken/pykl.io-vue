@@ -18,6 +18,7 @@
 
 <script>
 import Vue from 'vue';
+import store from './store.js';
 import Header from '@/components/Header.vue';
 import Intro from '@/components/Intro.vue';
 import Channel from '@/components/Channel.vue';
@@ -28,6 +29,7 @@ import Footer from '@/components/Footer.vue';
 
 export default Vue.extend({
     name: 'Index',
+    store,
     components: {
         Header,
         Intro,

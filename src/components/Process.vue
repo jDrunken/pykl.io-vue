@@ -29,6 +29,7 @@
 <i18n>
 {
     "en" : {
+        "how to use" : "How to use Pykl",
         "step" : [
             {
                 "title" : "Kick-Off",
@@ -54,6 +55,7 @@
         ]
     },
     "ko" : {
+        "how to use" : "Pykl 서비스 이용 방법",
         "step" : [
             {
                 "title" : "광고 의뢰",
@@ -83,6 +85,7 @@
 <script>
 export default ({
     name : 'Process',
+
 });
 </script>
 
