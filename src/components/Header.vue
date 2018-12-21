@@ -66,6 +66,10 @@ export default ({
             document.documentElement.lang = lang;
 
             this.$i18n.locale = lang;
+            this.$store.commit('changeLanguage',{
+                lang: lang,
+                i18n: this.$i18n
+            });
         },
     },
 });
