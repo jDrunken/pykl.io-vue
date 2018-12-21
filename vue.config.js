@@ -17,13 +17,20 @@ module.exports = {
             .set('image', path.resolve(__dirname, './src/assets/image'))
             .set('style', path.resolve(__dirname, './src/assets/style'));
     },
-
     pluginOptions: {
-      i18n: {
-        locale: 'ko',
-        fallbackLocale: 'en',
-        localeDir: 'locale',
-        enableInSFC: true
-      }
-    }
+        i18n: {
+            locale: 'ko',
+            fallbackLocale: 'en',
+            localeDir: 'locale',
+            enableInSFC: true
+        }
+    },
+    devServer: {
+        overlay: {
+            info : true,
+            warnings: true,
+            errors: true
+        }
+    },
+    lintOnSave: process.env.NODE_ENV !== 'production'
 };

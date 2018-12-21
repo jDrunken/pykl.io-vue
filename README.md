@@ -23,6 +23,10 @@ npm run test
 ```
 
 ### Lints and fixes files
+
+eslint의 설정은 *package.json* 에 bundle되어 있습니다.
+`window.console`의 사용을 허용해 둔 상태입니다.
+
 ```
 npm run lint
 ```
