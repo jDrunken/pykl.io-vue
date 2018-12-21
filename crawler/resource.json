@@ -1,6 +1,14 @@
 [
     {
-        "id" : "UCFYXE2w60jhpCO9uKvjZvVQ",
+        "id" : "journalist.yoo",
+        "channel" : "steemit"
+    },
+    {
+        "id" : "donekim",
+        "channel" : "steemit"
+    },
+    {
+        "id" : "UCCG1aA9_wHxB3iGGvJetY_Q",
         "channel" : "youtube"
     },
     {
@@ -16,16 +24,20 @@
         "channel" : "youtube"
     },
     {
+        "id" : "boostyou",
+        "channel" : "steemit"
+    },
+    {
         "id" : "UCCho7n8zvINvLZgZI3osFGQ",
         "channel" : "youtube"
     },
     {
-        "id" : "UCCG1aA9_wHxB3iGGvJetY_Q",
-        "channel" : "youtube"
+        "id" : "shimsing",
+        "channel" : "steemit"
     },
     {
-        "id" : "virus707",
-        "channel" : "steemit"
+        "id" : "UCFYXE2w60jhpCO9uKvjZvVQ",
+        "channel" : "youtube"
     },
     {
         "id" : "kim066",
@@ -40,27 +52,15 @@
         "channel" : "steemit"
     },
     {
+        "id" : "virus707",
+        "channel" : "steemit"
+    },
+    {
         "id" : "segyepark",
         "channel" : "steemit"
     },
     {
-        "id" : "boostyou",
-        "channel" : "steemit"
-    },
-    {
-        "id" : "donekim",
-        "channel" : "steemit"
-    },
-    {
         "id" : "rothbardianism",
-        "channel" : "steemit"
-    },
-    {
-        "id" : "journalist.yoo",
-        "channel" : "steemit"
-    },
-    {
-        "id" : "shimsing",
         "channel" : "steemit"
     }
 ]

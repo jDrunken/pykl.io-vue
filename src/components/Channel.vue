@@ -81,6 +81,8 @@
 </i18n>
 
 <script>
+'use strict';
+
 import ChannelData from '../conf/channel_info.json';
 
 export default {
@@ -90,11 +92,25 @@ export default {
     },
     data() {
         return {
-            // 구독자 순으로 역정렬을 해야됩니다. 지금은 구독자순이 아니라서...
             youtube : ChannelData.youtube,
             steemit : ChannelData.steemit
         };
     },
+    methods : {
+        sortBySubscriberToDesc (list) {
+            // 내림차순 정렬
+            list.sort((a,b) => {
+                let _int = (string) => parseInt(string.replace(',',''));
+
+                return _int(a.subscriber) > _int(b.subscriber) ? -1 : _int(a.subscriber) < _int(b.subscriber) ? 1 : 0
+            });
+        }
+    },
+    created () {
+        this.sortBySubscriberToDesc(this.youtube);
+        this.sortBySubscriberToDesc(this.steemit);
+    }
+
 };
 </script>
 
