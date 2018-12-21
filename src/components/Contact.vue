@@ -10,7 +10,7 @@
         <div class="section__content">
             <p class="contact__text" v-html="$t('title')"></p>
             <div class="contact__etc">
-                <a href="/PYKL_Network_Proposal.pdf" class="button--large --ghost">{{ $t('download') }}</a>
+                <a href="<%= BASE_URL %>PYKL_Network_Proposal.pdf" class="button--large --ghost">{{ $t('download') }}</a>
                 <a href="https://goo.gl/forms/GHVgiN5OWVfTwg4Z2" target="_blank" class="button--large --ghost" rel="noreferrer noopener">{{ $t('request') }}</a>
             </div>
         </div>

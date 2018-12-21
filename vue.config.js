@@ -32,5 +32,8 @@ module.exports = {
             errors: true
         }
     },
-    lintOnSave: process.env.NODE_ENV !== 'production'
+    lintOnSave: process.env.NODE_ENV !== 'production',
+    baseUrl: process.env.NODE_ENV === 'production'
+    ? './'
+    : '/'
 };

@@ -2,9 +2,13 @@
 
 pykl 사이트를 vue 기반으로 변경중
 
+
 ## Project setup
 ```
 npm install
+npm install -g nodemon
+npm install -g @vue/cli
+npm install -g vue-cli-ghpages
 ```
 
 ### Compiles and hot-reloads for development
@@ -59,5 +63,7 @@ run for dev (REPL)
 
 ```
 npm install -g nodemon
-nodemon crawler
+nodemon ./crawler
 ```
+
+## dependancy
