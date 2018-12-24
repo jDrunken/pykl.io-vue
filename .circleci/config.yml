@@ -47,7 +47,7 @@ jobs:
 
       - deploy:
           name : deploy
-          command : sudo vue-cli-ghpages
+          command : sudo vue-cli-ghpages --name="jdrunken" --email="mycoolade@gmail.com"
 
       - save_cache:
           paths:
