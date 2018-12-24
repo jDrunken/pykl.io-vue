@@ -3,6 +3,9 @@
 version: 2
 jobs:
   build:
+    branches:
+      ignore:
+        - gh-pages
     docker:
       # specify the version you desire here
       - image: circleci/node:latest
@@ -11,10 +14,6 @@ jobs:
     environment:
       - SOURCE_BRANCH: master
       - TARGET_BRANCH: gh-pages
-    filters:
-      branches:
-        only: master
-
     steps:
       - checkout
 
@@ -44,8 +43,8 @@ jobs:
       - add_ssh_keys:
           fingerprints:
               - "09:5a:58:b4:ba:53:bd:84:4a:f9:2a:dd:da:34:a9:1f"
-      - deploy:
-          name: Deploy
+      - run:
+          name: deploy
           command: |
             if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
               git config --global user.email $GH_EMAIL
