@@ -18,8 +18,7 @@ jobs:
 
       - add_ssh_keys:
           fingerprints:
-              - "1b:78:fb:be:b7:5e:8f:8b:1c:6f:5d:65:34:27:23:f4"
-
+              - "09:5a:58:b4:ba:53:bd:84:4a:f9:2a:dd:da:34:a9:1f"
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -29,7 +28,7 @@ jobs:
 
       - run:
           name: install vue-cli-ghpages for deploy
-          command : sudo npm install -g vue-cli-ghpages
+          command : npm install vue-cli-ghpages
 
       - run:
           name: npm install
@@ -48,4 +47,4 @@ jobs:
           command : npm run build
       - run:
           name : deploy
-          command : sudo vue-cli-ghpages
+          command : vue-cli-ghpages
