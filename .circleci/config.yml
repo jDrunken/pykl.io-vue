@@ -43,7 +43,7 @@ jobs:
           name: install vue-cli-ghpages for deploy
           command : sudo npm install -g vue-cli-ghpages
 
-      - run:
+      - deploy:
           name : deploy
           command : sudo vue-cli-ghpages
 
