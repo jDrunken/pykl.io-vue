@@ -9,7 +9,7 @@
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit",
     "dev": "node ./crawler/crawl && npm run serve",
-    "deploy:gh-pages": "gh-pages -d dist -m 'chore: update [skip ci]' -t"
+    "deploy": "gh-pages -d dist -m 'chore: update [skip ci]' -t"
   },
   "dependencies": {
     "ajv-keywords": "^3.2.0",
