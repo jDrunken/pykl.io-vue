@@ -30,6 +30,11 @@ jobs:
           name: npm install
           command: npm install
 
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
       - run:
           name : crawling
           command : node ./crawler/crawl
@@ -48,8 +53,3 @@ jobs:
       - deploy:
           name : deploy
           command : sudo vue-cli-ghpages --name="jdrunken" --email="mycoolade@gmail.com"
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}

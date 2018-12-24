@@ -9,7 +9,7 @@
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit",
     "dev": "node ./crawler/crawl && npm run serve",
-    "deploy": "node ./crawler/crawl && npm run build && vue-cli-ghpages"
+    "deploy:gh-pages": "gh-pages -d dist -m 'chore: update [skip ci]' -t"
   },
   "dependencies": {
     "ajv-keywords": "^3.2.0",
@@ -31,6 +31,7 @@
     "cheerio": "^1.0.0-rc.2",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0-0",
+    "gh-pages": "^2.0.1",
     "got": "^9.4.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
