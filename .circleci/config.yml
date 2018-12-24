@@ -40,8 +40,8 @@ jobs:
           name : crawling
           command : node ./crawler/crawl
       - run:
-          name : crawling
+          name : build
           command : npm run build
       - run:
           name : deploy
-          command : vue-cli-ghpages
+          command : sudo vue-cli-ghpages
