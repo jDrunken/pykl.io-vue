@@ -17,9 +17,38 @@ jobs:
     steps:
       - checkout
 
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      # - run:
+          # name: npm install
+          # command: npm install
+
+      # - run:
+          # name : crawling
+          # command : node ./crawler/crawl
+
+      # - run:
+          # name : build
+          # command : npm run build
+
+      - run:
+          name: install vue-cli-ghpages for deploy
+          command : sudo npm install -g vue-cli-ghpages
+
       - add_ssh_keys:
           fingerprints:
               - "31:19:ab:c4:3f:e5:7d:f7:44:e9:58:b8:d9:6e:82:38"
       - run:
           name : deploy
           command : sudo vue-cli-ghpages
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
