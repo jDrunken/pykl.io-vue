@@ -46,7 +46,9 @@ jobs:
               - "09:5a:58:b4:ba:53:bd:84:4a:f9:2a:dd:da:34:a9:1f"
       - run:
           name : deploy
-          command : |
+      - deploy:
+          name: Deploy
+          command: |
             if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
               git config --global user.email $GH_EMAIL
               git config --global user.name $GH_NAME
@@ -69,7 +71,7 @@ jobs:
               git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
 
               git push origin $TARGET_BRANCH
-           fi
+            fi
       - save_cache:
           paths:
             - node_modules
