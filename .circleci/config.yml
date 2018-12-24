@@ -45,7 +45,8 @@ jobs:
 
       - deploy:
           name : deploy
-          command : sudo vue-cli-ghpages
+          # command : sudo vue-cli-ghpages
+          connamd : git subtree push --prefix dist origin +gh-pages
 
       - save_cache:
           paths:
