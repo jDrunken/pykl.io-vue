@@ -46,7 +46,7 @@ jobs:
 
       - add_ssh_keys:
           fingerprints:
-              - "09:5a:58:b4:ba:53:bd:84:4a:f9:2a:dd:da:34:a9:1f"
+              - "a4:27:32:5b:d0:28:a3:2e:8c:06:f7:b4:c1:1b:29:6b"
       - run:
           name : deploy
           command : sudo vue-cli-ghpages
