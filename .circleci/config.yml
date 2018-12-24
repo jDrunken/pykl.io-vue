@@ -41,14 +41,13 @@ jobs:
       - add_ssh_keys:
           fingerprints:
               - "09:5a:58:b4:ba:53:bd:84:4a:f9:2a:dd:da:34:a9:1f"
-      # - run:
-          # name: install vue-cli-ghpages for deploy
-          # command : sudo npm install -g vue-cli-ghpages
+      - run:
+          name: install vue-cli-ghpages for deploy
+          command : sudo npm install -g vue-cli-ghpages
 
       - deploy:
           name : deploy
-          # command : sudo vue-cli-ghpages
-          command : git subtree push --prefix dist origin +gh-pages
+          command : sudo vue-cli-ghpages
 
       - save_cache:
           paths:
