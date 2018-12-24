@@ -1,4 +1,5 @@
 # Javascript Node CircleCI 2.0 configuration file for Pykl.io-vue
+
 version: 2
 jobs:
   build:
@@ -16,19 +17,12 @@ jobs:
     steps:
       - checkout
 
-      - add_ssh_keys:
-          fingerprints:
-              - "09:5a:58:b4:ba:53:bd:84:4a:f9:2a:dd:da:34:a9:1f"
       # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-
-      - run:
-          name: install vue-cli-ghpages for deploy
-          command : npm install vue-cli-ghpages
 
       - run:
           name: npm install
@@ -45,6 +39,14 @@ jobs:
       - run:
           name : build
           command : npm run build
+
+      - run:
+          name: install vue-cli-ghpages for deploy
+          command : sudo npm install -g vue-cli-ghpages
+
+      - add_ssh_keys:
+          fingerprints:
+              - "09:5a:58:b4:ba:53:bd:84:4a:f9:2a:dd:da:34:a9:1f"
       - run:
           name : deploy
-          command : vue-cli-ghpages
+          command : sudo vue-cli-ghpages
