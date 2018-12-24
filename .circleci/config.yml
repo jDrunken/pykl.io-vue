@@ -37,8 +37,11 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
-          name : build
-          command : node ./crawl/crawler && npm run build
+          name : crawling
+          command : node ./crawler/crawl
+      - run:
+          name : crawling
+          command : npm run build
       - run:
           name : deploy
           command : vue-cli-ghpages
