@@ -28,7 +28,7 @@ jobs:
 
       - run:
           name: install vue-cli-ghpages for deploy
-          command : npm install -g vue-cli-ghpages
+          command : sudo npm install -g vue-cli-ghpages
 
       - run:
           name: npm install
@@ -41,7 +41,7 @@ jobs:
 
       - run:
           name : build
-          command : node ./crawl/crawl && npm run build
+          command : node ./crawl/crawler && npm run build
       - run:
           name : deploy
           command : vue-cli-ghpages
