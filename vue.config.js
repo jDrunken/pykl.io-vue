@@ -16,6 +16,14 @@ module.exports = {
         config.resolve.alias
             .set('image', path.resolve(__dirname, './src/assets/image'))
             .set('style', path.resolve(__dirname, './src/assets/style'));
+
+        // pdf loader
+        config.module
+            .rule('pdf')
+            .test(/\.pdf/)
+            .use('file-loader')
+            .loader('file-loader?name=[name].[hash:20].[ext]')
+            .end();
     },
     pluginOptions: {
         i18n: {
@@ -34,6 +42,6 @@ module.exports = {
     },
     lintOnSave: process.env.NODE_ENV !== 'production',
     baseUrl: process.env.NODE_ENV === 'production'
-    ? './'
-    : '/'
+        ? './'
+        : '/'
 };
