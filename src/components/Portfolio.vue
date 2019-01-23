@@ -95,7 +95,7 @@ export default ({
                 },
                 {
                     id : 8,
-                    url : 'https://eosauthority.com/space/',
+                    url : 'https://eosys.io',
                     image : 'img-portfolio-8.jpg',
                     name : 'EOSYS',
                 },
