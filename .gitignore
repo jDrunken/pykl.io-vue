@@ -24,4 +24,3 @@ yarn-error.log*
 *.sw*
 
 channel_info.json
-/src/assets/image/channel/
