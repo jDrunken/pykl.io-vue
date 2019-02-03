@@ -1,6 +1,14 @@
 # Javascript Node CircleCI 2.0 configuration file for Pykl.io-vue
 
 version: 2
+nightly:
+  triggers:
+    - schedule:
+      cron: "10 30 * * *"
+      filters:
+        branches:
+          only:
+            - master
 jobs:
   build:
     branches:
