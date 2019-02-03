@@ -15,17 +15,17 @@
             </header>
 
             <ul class="card__list">
-                <li class="card__item" v-bind:key="youtube.name" v-for="youtube in youtube">
+                <li class="card__item" v-bind:key="index" v-for="(youtube,index) in youtube">
                     <article class="card --channel">
                         <a target="_blank" v-bind:href="youtube.href">
                             <div class="card__img">
-                                <img v-bind:src="youtube.image" alt="">
+                                <img v-bind:src="setImage(youtube.image)" alt="">
                             </div>
                             <div class="card__content">
-                                <h1 class="card__title">{{ youtube.name.replace(/\[.+?\]/,'')}}</h1>
+                                <h1 class="card__title">{{ setLocaleName(youtube.name) }}</h1>
                                 <dl v-if=youtube.subscriber>
                                     <dt>{{ $t('subscriber') }}</dt>
-                                    <dd>{{ youtube.subscriber }}</dd>
+                                    <dd>{{ youtube.subscriber | addComma }}</dd>
                                 </dl>
                             </div>
                         </a>
@@ -42,18 +42,41 @@
             </header>
 
             <ul class="card__list">
-                <li class="card__item" v-bind:key="steemit.name" v-for="steemit in steemit">
+                <li class="card__item" v-bind:key="index" v-for="(steemit,index) in steemit">
                     <article class="card --channel">
                         <a target="_blank" v-bind:href="steemit.href">
                             <div class="card__img">
-                                <img v-bind:src="steemit.image" alt="">
+                                <img v-bind:src="setImage(steemit.image)" alt="">
                             </div>
                             <div class="card__content">
-                                <h1 class="card__title" lang="en">@{{ steemit.name }}</h1>
+                                <h1 class="card__title" lang="en">@{{ steemit.name.ko }}</h1>
                                 <dl>
                                     <dt>{{ $t('follower') }}</dt>
-                                    <dd>{{ steemit.subscriber }}</dd>
+                                    <dd>{{ steemit.subscriber | addComma }}</dd>
                                 </dl>
+                            </div>
+                        </a>
+                    </article>
+                </li>
+            </ul>
+        </section>
+
+        <section class="section__content">
+            <header class="channel__header">
+                <h1 class="channel__title">
+                    Community
+                </h1>
+            </header>
+
+            <ul class="card__list">
+                <li class="card__item">
+                    <article class="card --channel">
+                        <a target="_blank" href="https://cafe.naver.com/nexontv/">
+                            <div class="card__img">
+                                <img src="../assets/image/channel/bitman.png">
+                            </div>
+                            <div class="card__content">
+                                <h1 class="card__title" lang="en">{{ $t('community.bitman')}}</h1>
                             </div>
                         </a>
                     </article>
@@ -71,18 +94,22 @@
 {
     "en" : {
         "subscriber" : "Subscribers",
-        "follower" : "Follower"
+        "follower" : "Follower",
+        "community" : {
+            "bitman" : "BITMAN"
+        }
     },
     "ko" : {
         "subscriber" : "구독자",
-        "follower" : "팔로워"
+        "follower" : "팔로워",
+        "community" : {
+            "bitman" : "비트맨"
+        }
     }
 }
 </i18n>
 
 <script>
-'use strict';
-
 import ChannelData from '../conf/channel_info.json';
 
 export default {
@@ -96,13 +123,23 @@ export default {
             steemit : ChannelData.steemit
         };
     },
+    filters: {
+        addComma(int) {
+            const amt = Number(int)
+            return amt.toLocaleString(undefined, {maximumFractionDigits:2})
+        }
+    },
     methods : {
+        setLocaleName (str) {
+            return str[this.$i18n.locale]
+        },
+        setImage (path) {
+            return require('../assets/image/channel/'+path)
+        } ,
         sortBySubscriberToDesc (list) {
             // 내림차순 정렬
             list.sort((a,b) => {
-                let _int = (string) => parseInt(string.replace(',',''));
-
-                return _int(a.subscriber) > _int(b.subscriber) ? -1 : _int(a.subscriber) < _int(b.subscriber) ? 1 : 0
+                return (a.subscriber) > (b.subscriber) ? -1 : (a.subscriber) < (b.subscriber) ? 1 : 0
             });
         }
     },
