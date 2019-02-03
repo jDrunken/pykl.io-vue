@@ -1,66 +1,154 @@
 [
     {
         "id" : "journalist.yoo",
-        "channel" : "steemit"
+        "channel" : "steemit",
+        "name" : {
+            "ko" : "journalist.yoo",
+            "en" : "journalist.yoo"
+        }
     },
     {
         "id" : "donekim",
-        "channel" : "steemit"
+        "channel" : "steemit",
+        "name" : {
+            "ko" : "donekim",
+            "en" : "donekim"
+        }
     },
     {
         "id" : "UCCG1aA9_wHxB3iGGvJetY_Q",
-        "channel" : "youtube"
+        "channel" : "youtube",
+        "name" : {
+            "ko" : "코남 - CONAM TV",
+            "en" : "CONAM TV"
+        }
     },
     {
         "id" : "UCZWvx1PFmcTLiGJX3FTcCBA",
-        "channel" : "youtube"
+        "channel" : "youtube",
+        "name" : {
+            "ko" : "COINsignt",
+            "en" : "COINsignt"
+        }
     },
     {
         "id" : "UCiqTJXq5QFw5lNnUueqBqQQ",
-        "channel" : "youtube"
+        "channel" : "youtube",
+        "name" : {
+            "ko" : "BLOCK INFO",
+            "en" : "BLOCK INFO"
+        }
     },
     {
         "id" : "UCsrenJyjKnZDHnuNpQLgPUA",
-        "channel" : "youtube"
+        "channel" : "youtube",
+        "name" : {
+            "ko" : "YES MEN",
+            "en" : "YES MEN"
+        }
     },
     {
         "id" : "boostyou",
-        "channel" : "steemit"
+        "channel" : "steemit",
+        "name" : {
+            "ko" : "boostyou",
+            "en" : "boostyou"
+        }
     },
     {
         "id" : "UCCho7n8zvINvLZgZI3osFGQ",
-        "channel" : "youtube"
+        "channel" : "youtube",
+        "name" : {
+            "ko" : "비트보이쎄시봉",
+            "en" : "BITBOY SESIBONG"
+        }
     },
     {
         "id" : "shimsing",
-        "channel" : "steemit"
+        "channel" : "steemit",
+        "name" : {
+            "ko" : "shimsing",
+            "en" : "shimsing"
+        }
     },
     {
         "id" : "UCFYXE2w60jhpCO9uKvjZvVQ",
-        "channel" : "youtube"
+        "channel" : "youtube",
+        "name" : {
+            "ko" : "킬러웨일",
+            "en" : "KillaWhale"
+        }
     },
     {
         "id" : "kim066",
-        "channel" : "steemit"
+        "channel" : "steemit",
+        "name" : {
+            "ko" : "kim066",
+            "en" : "kim066"
+        }
     },
     {
         "id" : "indend007",
-        "channel" : "steemit"
+        "channel" : "steemit",
+        "name" : {
+            "ko" : "indend007",
+            "en" : "indend007"
+        }
     },
     {
         "id" : "musicholic",
-        "channel" : "steemit"
+        "channel" : "steemit",
+        "name" : {
+            "ko" : "musicholic",
+            "en" : "musicholic"
+        }
     },
     {
         "id" : "virus707",
-        "channel" : "steemit"
+        "channel" : "steemit",
+        "name" : {
+            "ko" : "virus707",
+            "en" : "virus707"
+        }
     },
     {
         "id" : "segyepark",
-        "channel" : "steemit"
+        "channel" : "steemit",
+        "name" : {
+            "ko" : "segyepark",
+            "en" : "segyepark"
+        }
     },
     {
         "id" : "rothbardianism",
-        "channel" : "steemit"
+        "channel" : "steemit",
+        "name" : {
+            "ko" : "rothbardianism",
+            "en" : "rothbardianism"
+        }
+    },
+    {
+        "id" : "UC7FDmFL-7iJJRxG4BUKnN9Q",
+        "channel" : "youtube",
+        "name" : {
+            "ko" : "신의두뇌",
+            "en" : " Brain of God"
+        }
+    },
+    {
+        "id" : "healings",
+        "channel" : "steemit",
+        "name" : {
+            "ko" : "healings",
+            "en" : "healings"
+        }
+    },
+    {
+        "id" : "keepit",
+        "channel" : "steemit",
+        "name" : {
+            "ko" : "Keepit",
+            "en" : "Keepit"
+        }
     }
 ]
