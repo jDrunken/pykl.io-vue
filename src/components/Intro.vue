@@ -7,7 +7,7 @@
                     Korea No.1 Crypto
                     Influencer Network
                 </h1>
-                <a href="/PYKL_Network_Proposal.pdf" class="button--large --green">{{$t('Download a proposal')}}</a></div>
+                <a v-bind:href="pdf" class="button--large --green">{{$t('Download a proposal')}}</a></div>
             <div class="hero__pykl" aria-hidden="true">
             </div>
         </header>
@@ -68,8 +68,10 @@
 <style lang="scss" scoped src="style/components/_hero.scss"></style>
 
 <script>
+import pdf from  '../assets/pdf/PYKL_Network_Proposal.pdf';
 export default {
     name : 'Intro',
-};
+    data : () => ({
+        pdf
+    })}
 </script>
-
