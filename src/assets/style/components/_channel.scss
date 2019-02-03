@@ -55,6 +55,8 @@
 
     &__title {
         @extend .col-sm-12, %text-base, %text-title;
+        color:#4aefb6;
+        font-size:$fs-large;
     }
 }
 

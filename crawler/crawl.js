@@ -1,31 +1,34 @@
 'use strict';
 
+const path = require('path')
 const fs = require('fs');
-const path = require('path');
-const list = require('./resource.json');
+const resource = require('./resource.json');
 const got = require('got');
 const cheerio = require('cheerio');
 const request = require('request');
+const findRoot = require('find-root')
 
-const result = {
+const info = {
     timestamp : '',
     youtube : [],
     steemit : []
 };
 
-let provider;
-// let imageFileName;
+const root = findRoot(__dirname)
+let list
+
+let imagePath
 
 // 디렉토리가 없으면 만든다.
 let directory = {
-    image : '../src/assets/image/channel/',
-    conf : path.join(__dirname, '..','src','conf')
+    image : root + '/src/assets/image/channel/',
+    conf : root + '/src/conf'
 };
 
-// if (!fs.existsSync(directory.image)) {
-    // fs.mkdirSync(directory.image);
-    // console.log('이미지 폴더를 생성했습니다.');
-// }
+if (!fs.existsSync(directory.image)) {
+    fs.mkdirSync(directory.image);
+    console.log('이미지 폴더를 생성했습니다.');
+}
 
 if (!fs.existsSync(directory.conf)) {
     fs.mkdirSync(directory.conf);
@@ -34,94 +37,129 @@ if (!fs.existsSync(directory.conf)) {
 
 
 // 이미지 다운로드 처리
-// const downloadImage = function(uri, filename, callback){
-    // request.head(uri, async function(err, res, body){
+let downloadImage = async function(uri) {
+    await request(uri).on('response', function(res) {
 
-        // let extension;
+        let extension;
 
-        // if (/jpg|png|gif/gi.test(uri)) {
-            // extension = uri.substr(-3,3);
-        // } else {
-            // extension = ((_ext) => {
-                // return {
-                    // 'jpeg' : 'jpg',
-                    // 'png' : 'png',
-                    // 'gif' : 'gif'
-                // }[_ext]
-            // })(res.headers['content-type'].split('/')[1]);
-        // }
+        if (/jpg|png|gif/gi.test(uri)) {
+            extension = uri.substr(-3,3);
+        } else {
+            extension = ((_ext) => {
+                return {
+                    'jpeg' : 'jpg',
+                    'png' : 'png',
+                    'gif' : 'gif'
+                }[_ext]
+            })(res.headers['content-type'].split('/')[1]);
+        }
 
-        // await request(uri).pipe(
-            // fs.createWriteStream(directory.image + provider.id + '.' + extension)
-        // ).pipe(
-            // (function () {
-               // return imageFileName = provider.id + '.' + extension;
-            // })()
-        // ).on('close', callback);
-    // });
-// };
+        let img = root+'/src/assets/image/channel/'+list.id+'.'+extension
+        this.pipe(fs.createWriteStream(root+'/src/assets/image/channel/'+list.id+'.'+extension));
+        return imagePath = img
 
-// 파일명 생성 :: url을 받아와서 파일명으로 가공한다.
-// const getFileName = function (uri) {
-// };
+    })
+};
 
 // 채널 정보 긁어오기
-async function get () {
-    for (provider of list) {
+async function getInfo () {
+    for (list of resource) {
         let {url,$} = '';
 
-        if (provider.channel === 'youtube') {
-            url = 'https://www.youtube.com/channel/'+provider.id
+        if (list.channel === 'youtube') {
+            url = 'https://www.youtube.com/channel/'+list.id
             let res = await got(url);
 
             $ = cheerio.load(res.body);
-            let subscriber = $('span.yt-subscription-button-subscriber-count-branded-horizontal.subscribed.yt-uix-tooltip').text();
-            let name = $('a.branded-page-header-title-link').text();
+            let subscriber = parseInt($('span.yt-subscription-button-subscriber-count-branded-horizontal.subscribed.yt-uix-tooltip').text().replace(',',''));
+            let name = $('a.branded-page-header-title-link').text()
+            let path = $('img.channel-header-profile-image').attr('src')
 
-            let src = $('img.channel-header-profile-image').attr('src')
-            // await downloadImage(src, provider.id, function () {});
+            // 이미지의 정보를 가지고 온다.
+            let imageRes = await got(path)
 
-            let href = url;
-            result.youtube.push({
-                'name' : name,
-                'href' : href,
-                // 'image' : imageFileName,
-                'image' : src,
+            let imageName = (function () {
+                // imageRes.body
+                let extension
+                if (/jpg|png|gif/gi.test(path)) {
+                    extension = uri.substr(-3,3);
+                } else {
+                    extension = ((_ext) => {
+                        return {
+                            'jpeg' : 'jpg',
+                            'png' : 'png',
+                            'gif' : 'gif'
+                        }[_ext]
+                    })(imageRes.headers['content-type'].split('/')[1]);
+
+                    return list.id+'.'+extension
+                }
+            })()
+
+            // download image
+            await request(path).pipe(fs.createWriteStream(root+'/src/assets/image/channel/'+imageName));
+
+            info.youtube.push({
+                'id' : list.id,
+                'name' : list.name,
+                'href' : url,
+                'image' : imageName,
                 'subscriber' : subscriber
             });
-            console.log('done : ' + provider.channel + ' || ' + name);
-        } else if (provider.channel === 'steemit') {
-            let subscriber = await got('https://api.steemjs.com/get_follow_count?account='+provider.id).then(res => {
-                return JSON.parse(res.body).follower_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+            console.log('done : ' + list.channel + ' || ' + name);
+
+        } else if (list.channel === 'steemit') {
+            let subscriber = await got('https://api.steemjs.com/get_follow_count?account='+list.id).then(res => {
+                return JSON.parse(res.body).follower_count;
             });
 
-            let name = provider.id;
 
-            // let src = await got('https://steemitimages.com/u/' + provider.id + '/avatar').then(res => {
-                // console.log(res.body);
-                // return JSON.parse(JSON.parse(res.body)[0].json_metadata).profile.profile_image;
-                // if (!!res.url) {
-                    // downloadImage(res.url, provider.id, function () {});
-                // }
-            // });
+            let name = list.id;
+            let href = 'https://steemit.com/@'+list.id;
 
-            let src = 'https://steemitimages.com/u/' + provider.id + '/avatar';
-            let href = 'https://steemit.com/@'+provider.id;
+            let path = 'https://steemitimages.com/u/' + list.id + '/avatar'
 
-            result.steemit.push({
-                'name' : name,
+            // 이미지의 정보를 가지고 온다.
+            let imageRes = await got(path)
+
+            let imageName = (function () {
+                let extension
+                if (/jpg|png|gif/gi.test(path)) {
+                    extension = uri.substr(-3,3);
+                } else {
+                    extension = ((_ext) => {
+                        return {
+                            'jpeg' : 'jpg',
+                            'png' : 'png',
+                            'gif' : 'gif'
+                        }[_ext]
+                    })(imageRes.headers['content-type'].split('/')[1]);
+
+                    return list.id+'.'+extension
+                }
+            })()
+
+            await request(path).pipe(fs.createWriteStream(root+'/src/assets/image/channel/'+imageName));
+            info.steemit.push({
+                'id' : list.id,
+                'name' : list.name,
                 'href' : href,
-                // 'image' : imageFileName,
-                'image' : src,
+                'image' : imageName,
                 'subscriber' : subscriber
             });
-            console.log('done : ' + provider.channel + ' || ' + name);
+            console.log('done : ' + list.channel + ' || ' + name);
         }
     }
 }
 
+
+
+
+//채널 정보 긁고 이미지 url 받아서 나중에 한번에 걸어서 이미지 받는걸로 해야되겠네
 (async () => {
-    await get();
-    result.timestamp = Date.now();
-    fs.writeFileSync(directory.conf + '/channel_info.json', JSON.stringify(result));
+    await getInfo()
+    // await getImage()
+    info.timestamp = Date.now();
+    fs.writeFileSync(root+'/src/conf/channel_info.json', JSON.stringify(info));
 })();
