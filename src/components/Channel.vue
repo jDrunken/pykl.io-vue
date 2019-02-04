@@ -61,28 +61,6 @@
             </ul>
         </section>
 
-        <section class="section__content">
-            <header class="channel__header">
-                <h1 class="channel__title">
-                    Community
-                </h1>
-            </header>
-
-            <ul class="card__list">
-                <li class="card__item">
-                    <article class="card --channel">
-                        <a target="_blank" href="https://cafe.naver.com/nexontv/">
-                            <div class="card__img">
-                                <img src="../assets/image/channel/bitman.png">
-                            </div>
-                            <div class="card__content">
-                                <h1 class="card__title" lang="en">{{ $t('community.bitman')}}</h1>
-                            </div>
-                        </a>
-                    </article>
-                </li>
-            </ul>
-        </section>
     </div>
 </section>
 </template>
@@ -94,17 +72,11 @@
 {
     "en" : {
         "subscriber" : "Subscribers",
-        "follower" : "Follower",
-        "community" : {
-            "bitman" : "BITMAN"
-        }
+        "follower" : "Follower"
     },
     "ko" : {
         "subscriber" : "구독자",
-        "follower" : "팔로워",
-        "community" : {
-            "bitman" : "비트맨"
-        }
+        "follower" : "팔로워"
     }
 }
 </i18n>
@@ -114,13 +86,11 @@ import ChannelData from '../conf/channel_info.json';
 
 export default {
     name : 'Network',
-    component : {
-        ChannelData
-    },
     data() {
         return {
             youtube : ChannelData.youtube,
-            steemit : ChannelData.steemit
+            steemit : ChannelData.steemit,
+            community : ChannelData.community
         };
     },
     filters: {

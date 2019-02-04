@@ -1,0 +1,11 @@
+[
+    {
+        "id" : "nexontv",
+        "channel" : "cafe",
+        "name" : {
+            "ko" : "비트맨",
+            "en" : "BITMAN"
+        },
+        "image" : "bitman.png"
+    }
+]

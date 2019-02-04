@@ -7,6 +7,10 @@
         padding-top:100px;
         padding-bottom:100px;
     }
+
+    &#community {
+        padding-top:0;
+    }
 }
 
 .section {
@@ -22,13 +26,15 @@
   &__title {
     @extend .col-sm-12, %ui-medium;
 
-    #network & {
+    #network &,
+    #community & {
       @include c($white);
     }
   }
 }
 
-#network {
+#network,
+#community {
   @include bgc($navy);
 }
 

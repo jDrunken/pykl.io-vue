@@ -52,7 +52,9 @@ $btn-height: 56px;
     }
 
     &__item {
-        #network & {
+        #network &,
+        #community &,
+        {
             @extend .col-sm-12, .col-md-6, .col-lg-4
         }
         #portfolio & {

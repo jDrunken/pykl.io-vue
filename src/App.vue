@@ -4,6 +4,7 @@
     <main id="main">
         <Intro/>
         <Channel/>
+        <Community/>
         <Portfolio/>
         <Process/>
         <Contact/>
@@ -22,6 +23,7 @@ import store from './store.js';
 import Header from '@/components/Header.vue';
 import Intro from '@/components/Intro.vue';
 import Channel from '@/components/Channel.vue';
+import Community from '@/components/Community.vue';
 import Portfolio from '@/components/Portfolio.vue';
 import Process from '@/components/Process.vue';
 import Contact from '@/components/Contact.vue';
@@ -34,6 +36,7 @@ export default Vue.extend({
         Header,
         Intro,
         Channel,
+        Community,
         Portfolio,
         Process,
         Contact,

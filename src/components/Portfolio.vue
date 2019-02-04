@@ -129,6 +129,12 @@ export default ({
                     image : 'img-portfolio-13.png',
                     name : 'HorusPay',
                 },
+                {
+                    id : 14,
+                    url : 'https://worbli.io/',
+                    image : 'bnr-worbli@2x.png',
+                    name : 'Worbli',
+                }
             ],
         };
     },

@@ -2,32 +2,47 @@
 
 const path = require('path')
 const fs = require('fs');
-const resource = require('./resource.json');
+
+const resource_channel = require('./resource_channel.json');
+const resource_community = require('./resource_community.json');
+
 const got = require('got');
 const cheerio = require('cheerio');
 const request = require('request');
 const findRoot = require('find-root')
 
-const info = {
+const channelInfo = {
     timestamp : '',
     youtube : [],
-    steemit : []
+    steemit : [],
 };
+
+const communityInfo = {
+    timestamp : '',
+    cafe : []
+}
 
 const root = findRoot(__dirname)
 let list
-
 let imagePath
 
 // 디렉토리가 없으면 만든다.
 let directory = {
-    image : root + '/src/assets/image/channel/',
+    image : {
+        channel : root + '/src/assets/image/channel/',
+        community : root + '/src/assets/image/community/',
+    },
     conf : root + '/src/conf'
 };
 
-if (!fs.existsSync(directory.image)) {
-    fs.mkdirSync(directory.image);
-    console.log('이미지 폴더를 생성했습니다.');
+if (!fs.existsSync(directory.image.channel)) {
+    fs.mkdirSync(directory.image.channel);
+    console.log('채널 이미지 폴더를 생성했습니다.');
+}
+
+if (!fs.existsSync(directory.image.community)) {
+    fs.mkdirSync(directory.image.community);
+    console.log('커뮤니티 이미지 폴더를 생성했습니다.');
 }
 
 if (!fs.existsSync(directory.conf)) {
@@ -62,11 +77,29 @@ let downloadImage = async function(uri) {
 };
 
 // 채널 정보 긁어오기
-async function getInfo () {
-    for (list of resource) {
+async function getChannelInfo () {
+    for (list of resource_channel) {
         let {url,$} = '';
 
-        if (list.channel === 'youtube') {
+        if (list.channel === 'cafe') {
+            url = 'https://cafe.naver.com/'+list.id
+            let res = await got(url);
+
+            $ = cheerio.load(res.body);
+            let subscriber = parseInt($('li.mem-cnt-info > a > em').text());
+
+            console.log(subscriber);
+
+            channelInfo.community.push({
+                'id' : list.id,
+                'name' : list.name,
+                'href' : url,
+                'image' : list.image,
+                'subscriber' : subscriber
+            });
+
+            console.log('done : ' + list.channel + ' || ' + list.id);
+        } else if (list.channel === 'youtube') {
             url = 'https://www.youtube.com/channel/'+list.id
             let res = await got(url);
 
@@ -99,7 +132,7 @@ async function getInfo () {
             // download image
             await request(path).pipe(fs.createWriteStream(root+'/src/assets/image/channel/'+imageName));
 
-            info.youtube.push({
+            channelInfo.youtube.push({
                 'id' : list.id,
                 'name' : list.name,
                 'href' : url,
@@ -141,7 +174,7 @@ async function getInfo () {
             })()
 
             await request(path).pipe(fs.createWriteStream(root+'/src/assets/image/channel/'+imageName));
-            info.steemit.push({
+            channelInfo.steemit.push({
                 'id' : list.id,
                 'name' : list.name,
                 'href' : href,
@@ -153,13 +186,42 @@ async function getInfo () {
     }
 }
 
+async function getCommunityInfo () {
+    for (list of resource_community) {
+        let {url,$} = '';
+
+        if (list.channel === 'cafe') {
+            url = 'https://cafe.naver.com/'+list.id
+            let res = await got(url);
+
+            $ = cheerio.load(res.body);
+            let subscriber = parseInt($('li.mem-cnt-info > a > em').text());
+
+            console.log(subscriber);
+
+            communityInfo.cafe.push({
+                'id' : list.id,
+                'name' : list.name,
+                'href' : url,
+                'image' : list.image,
+                'subscriber' : subscriber
+            });
+
+            console.log('done : ' + list.channel + ' || ' + list.id);
+        }
+    }
+}
 
 
 
 //채널 정보 긁고 이미지 url 받아서 나중에 한번에 걸어서 이미지 받는걸로 해야되겠네
 (async () => {
-    await getInfo()
-    // await getImage()
-    info.timestamp = Date.now();
-    fs.writeFileSync(root+'/src/conf/channel_info.json', JSON.stringify(info));
+    await getChannelInfo()
+    await getCommunityInfo()
+
+    channelInfo.timestamp = Date.now();
+    communityInfo.timestamp = Date.now();
+
+    fs.writeFileSync(root+'/src/conf/channel_info.json', JSON.stringify(channelInfo));
+    fs.writeFileSync(root+'/src/conf/community_info.json', JSON.stringify(communityInfo));
 })();
