@@ -19,15 +19,15 @@
                             </button>
                         </li>
                         <li class="gnb__item">
-                            <a href='#home' class="scroll" lang="en">Home</a>
+                            <a href="#home" v-on:click="moveTo('#home')" lang="en">Home</a>
                         </li>
                         <li class="gnb__item">
-                            <a href='#network' class="scroll" lang="en">Network</a></li>
+                            <a href='#network' v-on:click="moveTo('#network')" class="scroll" lang="en">Network</a></li>
                         <li class="gnb__item">
-                            <a href='#portfolio' class="scroll" lang="en">Portfolio</a>
+                            <a href='#portfolio' v-on:click="moveTo('#portfolio')" class="scroll" lang="en">Portfolio</a>
                         </li>
                         <li class="gnb__item">
-                            <a href='#contact' class="scroll" lang="en">Contact</a>
+                            <a href='#contact' v-on:click="moveTo('#contact')" class="scroll" lang="en">Contact</a>
                         </li>
                     </ul>
                     <div class="i18n">
@@ -70,6 +70,9 @@ export default ({
                 i18n: this.$i18n
             });
         },
+        // 스크롤로 이동
+        moveTo (id) {
+            this.$scrollTo(id)
     },
 });
 </script>
