@@ -6,17 +6,16 @@
                 <h1 class="pykl">
                     <a href="../index.html">Pykl</a>
                 </h1>
-                <button class="button--icon --menu" id="menu-btn" type="button"></button>
+                <button class="button--icon --menu" id="menu-btn" type="button" v-on:click="showMenu()"></button>
             </div>
             <div class="col-sm-12 col-md-9">
-                <nav id="nav">
+                <nav id="nav" v-bind:class="!!show ? 'show' : null">
                     <h1 class="sr-only">
                     </h1>
 
                     <ul class="gnb">
                         <li>
-                            <button class="button--icon --close" id="close-btn" type="button">
-                            </button>
+                            <button class="button--icon --close" id="close-btn" type="button" v-on:click="hideMenu()"></button>
                         </li>
                         <li class="gnb__item">
                             <a href="#home" v-on:click="moveTo('#home')" lang="en">Home</a>
@@ -59,6 +58,9 @@
 <script>
 export default ({
     name : 'Header',
+    data : () => ({
+        show : false
+    }),
     methods : {
         // 언어 변환 버튼
         changeLocale(lang, event) {
@@ -73,6 +75,16 @@ export default ({
         // 스크롤로 이동
         moveTo (id) {
             this.$scrollTo(id)
+            if (this.show === true) {
+                this.show = false
+            }
+        },
+        showMenu () {
+            return this.show = true
+        },
+        hideMenu () {
+            return this.show = false
+        }
     },
 });
 </script>
