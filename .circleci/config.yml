@@ -51,10 +51,17 @@ jobs:
 
 workflows:
   version: 2
+  push_and_build:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
   daily_build:
     triggers:
       - schedule:
-          cron: "53 * * * *"
+          cron: "3,6,9,12,15 * * * *"
           filters :
             branches:
               only:
