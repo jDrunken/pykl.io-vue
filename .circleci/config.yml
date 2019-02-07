@@ -1,14 +1,22 @@
 # Javascript Node CircleCI 2.0 configuration file for Pykl.io-vue
 
+workflow:
+  version: 2
+  commit:
+    jobs:
+      - build
+    daily_build:
+      triggers:
+        - schedule:
+            cron: "44 * * * *"
+            filters :
+              branches:
+                only:
+                  - master
+      jobs:
+        - build
+
 version: 2
-nightly:
-  triggers:
-    - schedule:
-      cron: "10 30 * * *"
-      filters:
-        branches:
-          only:
-            - master
 jobs:
   build:
     branches:
